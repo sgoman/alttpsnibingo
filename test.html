@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>testing a websocket connection to SNI</title>
+    </head>
+    <body>
+        <ul id="log">
+        </ul>
+    </body>
+    <script>
+        const Logger = {
+            connectToId: function(id) {
+                this.element = document.getElementById(id)
+            },
+            enhance: function(msg, noTimestamp) {
+                if (!noTimestamp) {
+                    msg = Date.now() + ': ' + msg
+                }
+                if (this.element) {
+                    const li = document.createElement('li')
+                    li.innerHTML = msg
+                    this.element.appendChild(li)
+                }
+            }
+        }
+        const logger = Object.create(Logger)
+        logger.connectToId("log")
+        logger.enhance("Logger initialized")
+
+        let trackerTimer = null
+        const bingoTiles = []
+
+        bingoTiles.push({
+            content: "Link's house",
+            isActive: true,
+            isOpen: true,
+            check: function(data) {
+                const locations = [[0x208, 0x10]]
+                // logger.enhance("Results in goal <i>" + this.content + "</i>: " + JSON.stringify(resultsAll(data, locations)))
+                if (hasAll(data, locations)) {
+                    this.isOpen = false
+                    logger.enhance("Completed goal <b>" + this.content + "</b>")
+                }
+            }
+        })
+
+        bingoTiles.push({
+            content: "Sanctuary",
+            isActive: true,
+            isOpen: true,
+            check: function(data) {
+                const locations = [[0x024, 0x10]]
+                // logger.enhance("Results in goal <i>" + this.content + "</i>: " + JSON.stringify(resultsAll(data, locations)))
+                if (hasAll(data, locations)) {
+                    this.isOpen = false
+                    logger.enhance("Completed goal <b>" + this.content + "</b>")
+                }
+            }
+        })
+
+        bingoTiles.push({
+            content: "Uncle + Passage",
+            isActive: true,
+            isOpen: true,
+            check: function(data) {
+                const locations = [[0x3C6, 0x01], [0x0AA, 0x10]]
+                // logger.enhance("Results in goal <i>" + this.content + "</i>: " + JSON.stringify(resultsAll(data, locations)))
+                if (hasAll(data, locations)) {
+                    this.isOpen = false
+                    logger.enhance("Completed goal <b>" + this.content + "</b>")
+                }
+            }
+        })
+
+        bingoTiles.push({
+            content: "Obtain Fire Rod",
+            isActive: true,
+            isOpen: true,
+            check: function(data) {
+                const locations = [[0x345, 0x01]]
+                // logger.enhance("Results in goal <i>" + this.content + "</i>: " + JSON.stringify(resultsAll(data, locations)))
+                if (hasAll(data, locations)) {
+                    this.isOpen = false
+                    logger.enhance("Completed goal <b>" + this.content + "</b>")
+                }
+            }
+        })
+
+        const socket = new WebSocket("ws://127.0.0.1:8080")
+        socket.binaryType = 'arraybuffer'
+
+        socket.onclose = e => {
+            logger.enhance("Connection closed!")
+        }
+
+        socket.onerror = e => {
+            logger.enhance("ERROR: " + JSON.stringify(e))
+        }
+
+        const hasAll = (data, locations) => {
+            for (const [location, mask] of locations) {
+                if ((data[location] & mask) === 0) return false
+            }
+            return true
+        }
+
+        const resultsAll = (data, locations) => locations.reduce((acc, [location, mask]) => [...acc, {location, mask, result: data[location] & mask}], [])
+
+        const processSave = (data, tiles) => {
+            // loop over active and open bingo tiles and perform checks
+            for(const tile of tiles.filter(t => t.isActive && t.isOpen)) {
+                tile.check(data)
+            }
+        }
+
+        const trackerStartTimer = () => {
+            trackerTimer = setTimeout(trackerReadMem, 1000)
+        }
+
+        const trackerReadMem = () => {
+            const snesRead = (address, size, callback) => {
+                socket.send(JSON.stringify({Opcode: "GetAddress", Space: "SNES", Operands: [address.toString(16), size.toString(16)]}))
+                socket.onmessage = callback
+            }
+
+            // TODO: add reading of dungeon chests and keys
+
+            snesRead(0xF50000 + 0x10, 1, function(event) {
+                const gameMode = new Uint8Array(event.data)[0]
+                if (![0x07, 0x09, 0x0b].includes(gameMode)) {
+                    trackerStartTimer()
+                    return
+                }
+                snesRead(0xF5F000, 0x280, function(event2) {
+                    snesRead(0xF5F280, 0x280, function(event3) {
+                        const data = new Uint8Array([...new Uint8Array(event2.data), ...new Uint8Array(event3.data)])
+                        processSave(data, bingoTiles)
+                        // TODO: save previous data
+                        trackerStartTimer()
+                    })
+                })
+            })
+        }
+
+        socket.onopen = e => {
+            logger.enhance("Connected!")
+            socket.send(JSON.stringify({Opcode: "DeviceList", Space: "SNES"}))
+            socket.onmessage = ev => {
+                const results = JSON.parse(ev.data).Results
+                if (results.length < 1) {
+                    logger.enhance("No device found")
+                    return
+                }
+                socket.send(JSON.stringify({Opcode: "Attach", Space: "SNES", Operands: [results[0]]}))
+                logger.enhance("Connected to device: " + results[0])
+
+                trackerStartTimer()
+            }
+        }
+
+    </script>
+</html>

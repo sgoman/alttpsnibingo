@@ -1,0 +1,29 @@
+Some notes about gathering information from the bingosync page.
+
+Make sure the room is for the correct game:
+
+document.querySelector('span[title="Zelda: A Link to the Past - Randomizer"]') != null
+
+Get the selected player color:
+
+document.querySelector('.chosen-color').attributes.getNamedItem('squarecolor').value
+
+Get a list of all 25 tile id and description pairs:
+
+[...document.querySelectorAll('.text-container')].map(node => [node.parentNode.id, node.textContent])
+
+To get the list of the 25 tiles as text, one tile per line:
+
+[...document.querySelectorAll('.text-container')].map(node => node.textContent).join('\n')
+
+To mark a tile as being auto-tracked, add this node to the td-element with the "slot" id attribute:
+
+<div style="text-align: right; padding-top: 5px; opacity: 0.5">🤖</div>
+
+Make sure a tile is not already active for a certain color (i.e. the tile with id "slot1" has no child element with a "tealsquare" class) :
+
+document.querySelector('#slot1 .tealsquare') == null
+
+Click a tile:
+
+document.querySelector('#slot1').click()

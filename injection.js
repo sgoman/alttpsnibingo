@@ -432,6 +432,7 @@ for (const [id, task] of [...document.querySelectorAll('.text-container')].map(n
         botNode.innerText = '🤖'
         botNode.style.textAlign = 'right'
         botNode.style.paddingTop = '5px'
+        botNode.style.opacity = 0.5
         document.querySelector(`#${id}`).appendChild(botNode)
     }
 }

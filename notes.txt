@@ -27,3 +27,8 @@ document.querySelector('#slot1 .tealsquare') == null
 Click a tile:
 
 document.querySelector('#slot1').click()
+
+
+Set the Game selection to option value "18", "Custom (Advanced)":
+
+document.querySelector("#id_game_type").selectedIndex=[...document.querySelectorAll("#id_game_type option")].map(n => n.value).findIndex(e => e =="18")

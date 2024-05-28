@@ -399,7 +399,7 @@ bingoTiles.push({
 })
 //   "Speak to Fat Faerie",
 bingoTiles.push({
-    content: "Speak to Fat Faerie",
+    content: "Pyramid Grave Robber",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -601,6 +601,267 @@ bingoTiles.push({
 //   "Reveal a Hidden Cave under a rock in both Worlds",
 //   "Complete 1 Line of Y-Items"
 
+bingoTiles.push({
+    content: "Upgrade Tunic",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x359] > 0
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Mushroom",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x38C, 0x20]])
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Powder",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x38C, 0x10]])
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Shovel",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x38C, 0x04]])
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Hammer",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x34B, 0x01]])
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Bugnet",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x34D, 0x01]])
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Book",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x34E, 0x01]])
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Cape",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x352, 0x01]])
+    }
+})
+
+bingoTiles.push({
+    content: "Obtain the Mirror",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x353, 0x02]])
+    }
+})
+
+bingoTiles.push({
+    content: "Check Mimic Cave",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x218, 0x10]])
+    }
+})
+
+bingoTiles.push({
+    content: "Visit the Tavern",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x206, 0x10]])
+    }
+})
+
+bingoTiles.push({
+    content: "Break into the Brewery",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x20C, 0x10]])
+    }
+})
+
+bingoTiles.push({
+    content: "Chicken Coop secret stash",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x210, 0x10]])
+    }
+})
+
+bingoTiles.push({
+    content: "Mine Aginah's Cave",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x214, 0x10]])
+    }
+})
+
+bingoTiles.push({
+    content: "Clear Super Bunny Cave",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x1F0, 0x10],[0x1F0, 0x20]])
+    }
+})
+
+bingoTiles.push({
+    content: "Hype Cave Hyper Hyper!",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x23C, 0x10],[0x23C, 0x20],[0x23C, 0x40],[0x23C, 0x80],[0x23D, 0x04]])
+    }
+})
+
+bingoTiles.push({
+    content: "Enter Bonk Rock Cave",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x248, 0x10]])
+    }
+})
+
+bingoTiles.push({
+    content: "Hookshot Cave Bonk Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x078, 0x80]])
+    }
+})
+
+bingoTiles.push({
+    content: "Hookshot Cave Full Clear",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x078, 0x10],[0x078, 0x20],[0x078, 0x40],[0x078, 0x80]])
+    }
+})
+
+bingoTiles.push({
+    content: "Chat with the Hobo",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x3C9, 0x01]])
+    }
+})
+
+bingoTiles.push({
+    content: "Wake the Catfish",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x410, 0x20]])
+    }
+})
+
+bingoTiles.push({
+    content: "King Zora's Extortion",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x410, 0x02]])
+    }
+})
+
+bingoTiles.push({
+    content: "Rescue the Old Man",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x410, 0x01]])
+    }
+})
+
+bingoTiles.push({
+    content: "Checkerboard Cave Prize",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x24D, 0x02]])
+    }
+})
+
+bingoTiles.push({
+    content: "Hammer Pegs Hammer Time!",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x24F, 0x04]])
+    }
+})
+
+bingoTiles.push({
+    content: "Steal from the Library",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x410, 0x80]])
+    }
+})
+
+bingoTiles.push({
+    content: "Bumper Cave's Caped Hero",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x2CA, 0x40]])
+    }
+})
+
+bingoTiles.push({
+    content: "Dig at the Flute Spot",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x2AA, 0x40]])
+    }
+})
+
+bingoTiles.push({
+    content: "Waterfall Fairy offerings",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x228, 0x10],[0x228, 0x20]])
+    }
+})
+
 // Which tiles on the current board are available to autotrack?
 for (const [id, task] of [...document.querySelectorAll('.text-container')].map(n => [n.parentNode.id, n.textContent])) {
     const tiles = bingoTiles.filter(t => t.content == task)
@@ -634,6 +895,21 @@ const hasAll = (data, locations) => {
 }
 
 const resultsAll = (data, locations) => locations.reduce((acc, [location, mask]) => [...acc, {location, mask, result: data[location] & mask}], [])
+
+const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+}
+
+const customJson = document.querySelector('#id_custom_json')
+if (customJson !== null) {
+    const fullJson = bingoTiles.map(t => { return { name: t.content } })
+    const shuffledJson = shuffle(fullJson)
+    customJson.textContent = JSON.stringify(shuffledJson.slice(0, 25))
+}
 
 const processSave = (data, tiles) => {
     // loop over active and open bingo tiles and perform checks

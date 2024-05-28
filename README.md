@@ -8,6 +8,31 @@ Right now it only contains a test page to experiment with SNI connections and a 
 Later on I plan to build a user content script for the [GreaseMonkey](https://github.com/greasemonkey/greasemonkey)/[TamperMonkey](https://www.tampermonkey.net/) browser extension that integrates with bingosync.com and provides autotracking for most of the possible bingo tiles for ALTTP.
 Some goals might not be possible or at least trivial to track, so some user interaction might still be required.
 
+Injecting code into bingosync.com
+---------------------------------
+
+To inject the autotracker code, put the contents of injection.js into the clip board (open the file, CTRL-a, CTRL-c).
+
+If you optionally want a fully automated bingo game, follow these steps as the room creator:
+
+- select the option "Custom (Advanced)" from the Game selection dropdown
+- open the web developer tools of your browser (most probably by pressing F12, otherwise check the context menus)
+- make sure the "Console" tab is selected in the developer tools
+- paste (CTRL-v) the contents of injection.js into the prompt at the bottom of the page and hit enter
+- check the "Board" textbox on the bingosync page, it should contain a list of randomly selected tasks the autotracker is able to perform
+- fill the other dialog option of the form as usual and hit the "Make Room" button
+
+After a player has joined a bingosync room, they have to perform the same three steps from the optional instructions above:
+
+- open the web developer tools of your browser (most probably by pressing F12, otherwise check the context menus)
+- make sure the "Console" tab is selected in the developer tools
+- paste (CTRL-v) the contents of injection.js (that you previously copied to the clip board, see the top of this section) into the prompt at the bottom of the page and hit enter
+
+If everything worked well, the console should display a message that a device was connected and each tile on the bingo card that can be auto tracked should display a little robot emoji to the upper right.
+
+Those last three steps have to be performed by each player who wants their bingo tasks to be auto tracked, in their own browser tabs.
+
+It is advised to do those steps as the last chores of your setup routine for the ALTTP Randomizer Game. That is: the SNI connector should be up and running, the randomized ROM loaded on your SNES, maybe you have also started some other item or map tracking service. 
 
 Getting started (with the test script)
 --------------------------------------

@@ -112,23 +112,185 @@ bingoTiles.push({
 //   "Misery Mire Big Chest",
 //   "Turtle Rock Big Chest",
 //   "Desert Palace Compass",
+bingoTiles.push({
+    content: "Desert Palace Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x365, 0x10]]
+        return hasAll(data, locations)
+    }
+})
 //   "Tower of Hera Compass",
+bingoTiles.push({
+    content: "Tower of Hera Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x364, 0x20]]
+        return hasAll(data, locations)
+    }
+})
 //   "Palace of Darkness Compass",
+bingoTiles.push({
+    content: "Palace of Darkness Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x365, 0x02]]
+        return hasAll(data, locations)
+    }
+})
 //   "Swamp Palace Compass",
+bingoTiles.push({
+    content: "Swamp Palace Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x365, 0x04]]
+        return hasAll(data, locations)
+    }
+})
 //   "Skull Woods Compass",
+bingoTiles.push({
+    content: "Skull Woods Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x364, 0x80]]
+        return hasAll(data, locations)
+    }
+})
 //   "Thieves' Town Compass",
+bingoTiles.push({
+    content: "Thieves' Town Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x364, 0x10]]
+        return hasAll(data, locations)
+    }
+})
 //   "Ice Palace Compass",
+bingoTiles.push({
+    content: "Ice Palace Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x364, 0x40]]
+        return hasAll(data, locations)
+    }
+})
 //   "Misery Mire Compass",
+bingoTiles.push({
+    content: "Misery Mire Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x365, 0x01]]
+        return hasAll(data, locations)
+    }
+})
 //   "Turtle Rock Compass",
+bingoTiles.push({
+    content: "Turtle Rock Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x364, 0x08]]
+        return hasAll(data, locations)
+    }
+})
 //   "Desert Map",
+bingoTiles.push({
+    content: "Desert Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x369, 0x10]]
+        return hasAll(data, locations)
+    }
+})
 //   "Hera Map",
+bingoTiles.push({
+    content: "Hera Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x368, 0x20]]
+        return hasAll(data, locations)
+    }
+})
 //   "Darkness Map",
+bingoTiles.push({
+    content: "Darkness Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x369, 0x02]]
+        return hasAll(data, locations)
+    }
+})
 //   "Swamp Map",
+bingoTiles.push({
+    content: "Swamp Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x369, 0x04]]
+        return hasAll(data, locations)
+    }
+})
 //   "Skull Map",
+bingoTiles.push({
+    content: "Skull Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x368, 0x80]]
+        return hasAll(data, locations)
+    }
+})
 //   "Thieves' Map",
+bingoTiles.push({
+    content: "Thieves' Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x368, 0x10]]
+        return hasAll(data, locations)
+    }
+})
 //   "Ice Map",
+bingoTiles.push({
+    content: "Ice Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x368, 0x40]]
+        return hasAll(data, locations)
+    }
+})
 //   "Mire Map",
+bingoTiles.push({
+    content: "Mire Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x369, 0x01]]
+        return hasAll(data, locations)
+    }
+})
 //   "TRock Map",
+bingoTiles.push({
+    content: "TRock Map",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x368, 0x08]]
+        return hasAll(data, locations)
+    }
+})
 //   "Open 5 Small Key Doors (Palace of Darkness)",
 //   "Open 4 Small Key Doors (Skull Woods)",
 //   "Open 6 Small Key Doors (Ice Palace)",
@@ -252,7 +414,23 @@ bingoTiles.push({
 //   "40 Arrows",
 //   "50 Arrows",
 //   "20 Bombs",
+bingoTiles.push({
+    content: "20 Bombs",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x343] >= 20
+    }
+})
 //   "30 Bombs",
+bingoTiles.push({
+    content: "30 Bombs",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x343] >= 30
+    }
+})
 //   "40 Arrows and 20 Bombs",
 //   "8 Heart Pieces",
 //   "12 Heart Pieces",

@@ -683,11 +683,11 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Check Mimic Cave",
+    content: "The chest behind the Mario painting",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return hasAll(data, [[0x218, 0x10]])
+        return hasAll(data, [[0x238, 0x10]])
     }
 })
 
@@ -862,19 +862,35 @@ bingoTiles.push({
     }
 })
 
-// Which tiles on the current board are available to autotrack?
-for (const [id, task] of [...document.querySelectorAll('.text-container')].map(n => [n.parentNode.id, n.textContent])) {
-    const tiles = bingoTiles.filter(t => t.content == task)
-    if (tiles.length == 1) {
-        tiles[0].tileId = id
-        const botNode = document.createElement("div")
-        botNode.innerText = '🤖'
-        botNode.style.textAlign = 'right'
-        botNode.style.paddingTop = '5px'
-        botNode.style.opacity = 0.5
-        document.querySelector(`#${id}`).appendChild(botNode)
+const evaluateAutotrackedCards = () => {
+    for (const element of [...document.querySelectorAll('.autotracked')]) {
+        element.parentNode.removeChild(element)
+    }
+    // quick hack to clear card activations
+    for (let i = 1; i <= 25; i++) {
+        document.querySelector(`#slot${i}`).title = ''
+        for (const element of [...document.querySelectorAll(`#slot${i} .bg-color`)]) {
+            element.parentNode.removeChild(element)
+        }
+    }
+    // Which tiles on the current board are available to autotrack?
+    for (const [id, task] of [...document.querySelectorAll('.text-container')].map(n => [n.parentNode.id, n.textContent])) {
+        const tiles = bingoTiles.filter(t => t.content == task)
+        if (tiles.length == 1) {
+            tiles[0].tileId = id
+            tiles[0].isOpen = true
+            const botNode = document.createElement("div")
+            botNode.className = 'autotracked'
+            botNode.innerText = '🤖'
+            botNode.style.textAlign = 'right'
+            botNode.style.paddingTop = '5px'
+            botNode.style.opacity = 0.5
+            document.querySelector(`#${id}`).appendChild(botNode)
+        }
     }
 }
+
+evaluateAutotrackedCards()
 
 const socket = new WebSocket("ws://127.0.0.1:8080")
 socket.binaryType = 'arraybuffer'
@@ -896,6 +912,90 @@ const hasAll = (data, locations) => {
 
 const resultsAll = (data, locations) => locations.reduce((acc, [location, mask]) => [...acc, {location, mask, result: data[location] & mask}], [])
 
+const addToChat = params => {
+    const outerDiv = document.createElement('div')
+    outerDiv.className = 'chat-entry'
+    outerDiv.innerHTML = `<div><span class="chat-timestamp">${params.hour}:${params.minute}:${params.secondsAndName.split(' ')[0]}</span> <span class="chat-name">Autotracker</span>: <span class="chat-message">${params.reply}</span></div>`
+    params.node.parentNode.appendChild(outerDiv)
+}
+
+const chatHandler = node => {
+    // We get called for every node added to the chat pane
+    // Most probably only elements with the class "chat-entry" should be considered to parse for commands
+    // <div class="chat-entry"><div><span class="chat-timestamp">HH:ii:ss</span> <span class="chat-name [color]player">Name</span>: <span class="chat-message">text here</span></div></div>
+    // or just the innerText: "HH:ii:ss Name: text here"
+    if ([...node.classList].includes("chat-entry")) {
+        const [hour, minute, secondsAndName, msg] = node.innerText.split(':') // Caution: msg only reads up to the first colon, if the original message contains any
+        const words = msg.trim().split(' ')
+        switch(words[0]) {
+            case '!lockout': handleLockoutCommand({node, hour, minute, secondsAndName, msg, words}); break
+            case '!task': handleTileTextCommand({node, hour, minute, secondsAndName, msg, words}); break
+            case '!help': handleHelpCommand({node, hour, minute, secondsAndName, msg, words}); break
+        }
+    }
+}
+
+const handleHelpCommand = ({node, hour, minute, secondsAndName, words}) => {
+    let reply = ''
+    if (words.length > 1) {
+        switch(words[1]) {
+            case '!lockout':
+            case 'lockout':
+                reply += 'The lockout command restricts how many players are able to activate a bingo tile. "!lockout 2" limits all tiles to 2 players, "!lockout 1 13" limits just the tile at the very center of the board to a single player.'
+                break
+            case '!task':
+            case 'task':
+                reply += 'The task command changes the task description of tile "slot" to "message". E.g., "!task 13 Finish seed" will change the tile in the very center of the board to read "Finish seed".'
+                break
+            default:
+                reply += `unknown command "${words[1]}". Please specify one of "lockout", "text".`
+        }
+    } else {
+        reply += 'You can use the commands "!lockout amount [slot]", "!task slot message" or "!help [command]"'
+    }
+    addToChat({node, hour, minute, secondsAndName, words, reply})
+}
+
+const handleLockoutCommand = ({node, hour, minute, secondsAndName, words}) => {
+    if (words.length > 2 && /^([1-9]|10)$/.test(words[1])) {
+        const id = '#' + (/^([1-9]|1\d|2[0-5])$/.test(words[2]) ? 'slot' + words[2] : words[2])
+        document.querySelector(id).dataset.lockout = words[1]
+    } else if (words.length == 2 && /^([1-9]|10)$/.test(words[1])) {
+        [...document.querySelectorAll('.blanksquare')].forEach(t => t.dataset.lockout = words[1])
+    } else if (words.length == 1) {
+        const reply = [...document.querySelectorAll('.blanksquare')].map(t => `${t.id} = ${t.dataset.lockout}`).join(', ')
+        addToChat({node, hour, minute, secondsAndName, words, reply})
+    } else {
+        addToChat({node, hour, minute, secondsAndName, words, reply: 'Bogus input, nothing changed. It is advised to use just numbers from 1-10 for the first parameter and numbers 1-25 for the optional second parameter.'})
+    }
+}
+
+const handleTileTextCommand = ({node, hour, minute, secondsAndName, words}) => {
+    if (words.length > 2) {
+        const id = '#' + (/^([1-9]|1\d|2[0-5])$/.test(words[1]) ? 'slot' + words[1] : words[1])
+        const text = words.slice(2).join(' ')
+        const tile = document.querySelector(id + ' .text-container')
+        if (tile) {
+            tile.innerText = text
+            evaluateAutotrackedCards()
+        } else {
+            addToChat({node, hour, minute, secondsAndName, words, reply: 'Could not change unknown bingo card ' + words[1]})
+        }
+    } else {
+        addToChat({node, hour, minute, secondsAndName, words, reply: 'You need to provide both the number of the bingo card as well as the new text for that card!'})
+    }
+}
+
+const chatObserver = new MutationObserver((mutationList, observer) => {
+    for (const mutation of mutationList) {
+        for (const node of mutation.addedNodes) {
+            chatHandler(node)
+        }
+    }
+})
+
+chatObserver.observe(document.querySelector('.chat-body'), {childList: true})
+
 const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -904,11 +1004,17 @@ const shuffle = (array) => {
     return array
 }
 
+const getRandomAutotrackedTasks = (num) => {
+    const allTasks = bingoTiles.map(t => t.content)
+    const shuffledTasks = shuffle(allTasks)
+    return shuffledTasks.slice(0, num || 25)
+}
+
 const customJson = document.querySelector('#id_custom_json')
 if (customJson !== null) {
-    const fullJson = bingoTiles.map(t => { return { name: t.content } })
-    const shuffledJson = shuffle(fullJson)
-    customJson.textContent = JSON.stringify(shuffledJson.slice(0, 25))
+    const shuffledJson = getRandomAutotrackedTasks(25).map(name => { return {name} })
+    shuffledJson[12].name = 'Finish the game'
+    customJson.textContent = JSON.stringify(shuffledJson)
 }
 
 const processSave = (data, tiles) => {
@@ -917,7 +1023,13 @@ const processSave = (data, tiles) => {
         if (tile.check(data)) {
             console.log("Completed task " + tile.content)
             tile.isOpen = false // no need to check this tile again
-            document.querySelector(`#${tile.tileId}`).click()
+            const node = document.querySelector(`#${tile.tileId}`)
+            if (node.title.split(' ').filter(t => t.length).length < (node.dataset.lockout || 10)) {
+                node.click()
+            } else {
+                document.querySelector('input.chat-input').value = 'I wish I could mark "' + tile.content + '"...'
+                document.querySelector('input.chat-send').click()
+            }
         }
     }
 }

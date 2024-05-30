@@ -868,7 +868,9 @@ const evaluateAutotrackedCards = () => {
     }
     // quick hack to clear card activations
     for (let i = 1; i <= 25; i++) {
-        document.querySelector(`#slot${i}`).title = ''
+        const node = document.querySelector(`#slot${i}`)
+        if (!node) continue
+        node.title = ''
         for (const element of [...document.querySelectorAll(`#slot${i} .bg-color`)]) {
             element.parentNode.removeChild(element)
         }
@@ -994,7 +996,10 @@ const chatObserver = new MutationObserver((mutationList, observer) => {
     }
 })
 
-chatObserver.observe(document.querySelector('.chat-body'), {childList: true})
+const chatNode = document.querySelector('.chat-body')
+if (chatNode !== null) {
+    chatObserver.observe(chatNode, {childList: true})
+}
 
 const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -1012,9 +1017,9 @@ const getRandomAutotrackedTasks = (num) => {
 
 const customJson = document.querySelector('#id_custom_json')
 if (customJson !== null) {
-    const shuffledJson = getRandomAutotrackedTasks(25).map(name => { return {name} })
-    shuffledJson[12].name = 'Finish the game'
-    customJson.textContent = JSON.stringify(shuffledJson)
+    const shuffledJson = getRandomAutotrackedTasks(25)
+    shuffledJson[12] = 'Finish the game'
+    customJson.textContent = JSON.stringify(shuffledJson.map(name => { return {name} }))
 }
 
 const processSave = (data, tiles) => {

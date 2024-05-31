@@ -34,6 +34,15 @@ Those last three steps have to be performed by each player who wants their bingo
 
 It is advised to do those steps as the last chores of your setup routine for the ALTTP Randomizer Game. That is: the SNI connector should be up and running, the randomized ROM loaded on your SNES, maybe you have also started some other item or map tracking service. 
 
+Executing commands via the bingosync room chat
+----------------------------------------------
+
+Once a player has injected the tracker code on a room page, the player chat is enhanced by some additional commands. Those commands are sent to every other player in the room and if they have the script injected as well, their clients will perform the action as well. So it is advised to only use those commands after every player has connected and injected the code, as well as before the game is officially started.
+
+- "!task <slot number> <task text>" will change the text displayed on a bingo tile. E.g., "!task 13 Finish the game" will change the center tile of the bingo board to read "Finish the game". This will also re-evaluate the auto-tracking capabilities of each tile. If you enter a task description that matches an auto-tracked bingo card, the tracker will pick that up and act accordingly. Currently, there is a caveat regarding the activation of bingo tiles that were changed with this command: the chat will still display the original task description instead of the one currently being displayed on the board.
+- "!lockout [number of players allowed] [slot number to apply this restriction]" can restrict the number of players that are allowed to mark a bingo task as completed. If you just issue a "!lockout" command without any additional parameters, the current settings for each tile will be displayed. If you only provide the number of players allowed, it will update all bingo tiles to allow a maximum of that number of players. For example, "!lockout 2" will set all tasks to allow only two players to be able to mark them. If you also provide the number of a tile, the restriction will only be applied to that single tile. So "!lockout 1 13" will restrict the center tile to only allow the activation by the first player to reach that goal. Keep in mind that those lockout limits will only apply to marks performed by the autotracker, marking a tile manually by clicking on a square will still be possible. This is a technical limitation caused by the usage of anonymous event handlers bound to each bingo square. It would be cool if bingosync provides that functionality itself.
+- "!help [command]" will display some help text. Just "!help" by itself will print some general info, "!help task" or "!help !task" will provide more insight about the task command. Note: there is no detailed description for "!help help" ;)
+
 Getting started (with the test script)
 --------------------------------------
 

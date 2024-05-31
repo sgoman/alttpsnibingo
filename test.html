@@ -27,7 +27,7 @@
         logger.connectToId("log")
         logger.enhance("Logger initialized")
 
-        let trackerTimer = null
+        let trackerTimer = null, creditsTimer = null
         const bingoTiles = []
 
         bingoTiles.push({
@@ -155,6 +155,21 @@
                 logger.enhance("Connected to device: " + results[0])
 
                 trackerStartTimer()
+
+                creditsTimer = setTimeout(() => {
+                    const address = 0x7E0010
+                    const len = 1
+                    const data = new Uint8Array(0x19)
+                    logger.enhance("Sending PutAddress Request...")
+                    socket.send(JSON.stringify({Opcode: "PutAddress", Space: "SNES", Operands: ["7e0010", "1"]}))
+                    socket.onmessage = (evtW1) => {
+                        logger.enhance("Sending data...")
+                        socket.send(data)
+                        socket.onmessage = (evtW2) => {
+                            logger.enhance("Done.")
+                        }
+                    }
+                }, 10000)
             }
         }
 

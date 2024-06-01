@@ -692,6 +692,15 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Link's House",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x208, 0x10]])
+    }
+})
+
+bingoTiles.push({
     content: "Visit the Tavern",
     tileId: null,
     isOpen: true,
@@ -894,6 +903,8 @@ const evaluateAutotrackedCards = () => {
 
 evaluateAutotrackedCards()
 
+const playerName = [...document.querySelectorAll('h4')][0].innerText.replace('Playing as: ', '').replace(' Disconnect', '')
+const winConditions = {squares: 25, lines: 12, tile: 26}
 const socket = new WebSocket("ws://127.0.0.1:8080")
 socket.binaryType = 'arraybuffer'
 
@@ -914,6 +925,11 @@ const hasAll = (data, locations) => {
 
 const resultsAll = (data, locations) => locations.reduce((acc, [location, mask]) => [...acc, {location, mask, result: data[location] & mask}], [])
 
+const hasWon = () => {
+    const [playerSquares, playerLines] = [...document.querySelectorAll('#players-panel div')].filter(e => e.textContent.includes(playerName))[0].textContent.match(/\d+/g)
+    return (playerSquares >= winConditions.squares) || (playerLines >= winConditions.lines)
+}
+
 const addToChat = params => {
     const outerDiv = document.createElement('div')
     outerDiv.className = 'chat-entry'
@@ -932,7 +948,9 @@ const chatHandler = node => {
         switch(words[0]) {
             case '!lockout': handleLockoutCommand({node, hour, minute, secondsAndName, msg, words}); break
             case '!task': handleTileTextCommand({node, hour, minute, secondsAndName, msg, words}); break
+            case '!win': handleWinCommand({node, hour, minute, secondsAndName, msg, words}); break
             case '!help': handleHelpCommand({node, hour, minute, secondsAndName, msg, words}); break
+            case '!snap': handleSnapCommand({node, hour, minute, secondsAndName, msg, words}); break
         }
     }
 }
@@ -949,6 +967,9 @@ const handleHelpCommand = ({node, hour, minute, secondsAndName, words}) => {
             case 'task':
                 reply += 'The task command changes the task description of tile "slot" to "message". E.g., "!task 13 Finish seed" will change the tile in the very center of the board to read "Finish seed".'
                 break
+            case '!win':
+            case 'win':
+                reply += 'The win command changes the winning conditions for this board. You can win by either getting at least a number of individual squares or lines of squares or by getting a special square. You have to provide any combination of winning conditions by stating the first letter and the number of squares. For example: "!win s20l4t13" will let a player win by either getting 20 squares or 4 lines or simply completing tile 13 in the center of the board.'
             default:
                 reply += `unknown command "${words[1]}". Please specify one of "lockout", "text".`
         }
@@ -972,6 +993,29 @@ const handleLockoutCommand = ({node, hour, minute, secondsAndName, words}) => {
     }
 }
 
+const handleWinCommand = ({node, hour, minute, secondsAndName, words}) => {
+    if (words.length > 1) {
+        const conditions = words.slice(1).join('')
+        const winSquares = /s(\d+)/
+        const winLines = /l(\d+)/
+        const winTile = /t(\d+)/
+        if (winSquares.test(conditions)) {
+            winConditions.squares = Number(conditions.match(winSquares)[1])
+        }
+        if (winLines.test(conditions)) {
+            winConditions.lines = Number(conditions.match(winLines)[1])
+        }
+        if (winTile.test(conditions)) {
+            winConditions.tile = Number(conditions.match(winTile)[1])
+        }
+    }
+    let reply = `You win by conquering ${winConditions.squares} squares or at least ${winConditions.lines} lines (rows, columns or diagonals of length 5)`
+    if (winConditions.tile <= 25) {
+        reply += ' or by simply completing bingo card number ' + winConditions.tile
+    }
+    addToChat({node, hour, minute, secondsAndName, words, reply})
+}
+
 const handleTileTextCommand = ({node, hour, minute, secondsAndName, words}) => {
     if (words.length > 2) {
         const id = '#' + (/^([1-9]|1\d|2[0-5])$/.test(words[1]) ? 'slot' + words[1] : words[1])
@@ -986,6 +1030,18 @@ const handleTileTextCommand = ({node, hour, minute, secondsAndName, words}) => {
     } else {
         addToChat({node, hour, minute, secondsAndName, words, reply: 'You need to provide both the number of the bingo card as well as the new text for that card!'})
     }
+}
+
+const handleSnapCommand = ({node, hour, minute, secondsAndName, words}) => {
+    triggerFinishGame()
+}
+
+const triggerFinishGame = () => {
+    const address = 0xf50010
+    const data = new Uint8Array([0x19])
+    const request = JSON.stringify({Opcode: "PutAddress", Space: "SNES", Operands: [address.toString(16), data.byteLength.toString(16)]})
+    socket.send(request)
+    socket.send(data)
 }
 
 const chatObserver = new MutationObserver((mutationList, observer) => {
@@ -1031,6 +1087,11 @@ const processSave = (data, tiles) => {
             const node = document.querySelector(`#${tile.tileId}`)
             if (node.title.split(' ').filter(t => t.length).length < (node.dataset.lockout || 10)) {
                 node.click()
+                if ('slot' + winConditions['tile'] == tile.tileId) {
+                    triggerFinishGame()
+                } else {
+                    setTimeout(() => { if (hasWon()) triggerFinishGame() }, 1000)
+                }
             } else {
                 document.querySelector('input.chat-input').value = 'I wish I could mark "' + tile.content + '"...'
                 document.querySelector('input.chat-send').click()

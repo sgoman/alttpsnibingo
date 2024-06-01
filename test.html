@@ -156,20 +156,23 @@
 
                 trackerStartTimer()
 
+                /*
+                // skip to the end game scene with the triforce and credits
                 creditsTimer = setTimeout(() => {
-                    const address = 0x7E0010
-                    const len = 1
-                    const data = new Uint8Array(0x19)
+                    const address = 0xF50010
+                    const data = new Uint8Array([0x19])
                     logger.enhance("Sending PutAddress Request...")
-                    socket.send(JSON.stringify({Opcode: "PutAddress", Space: "SNES", Operands: ["7e0010", "1"]}))
-                    socket.onmessage = (evtW1) => {
-                        logger.enhance("Sending data...")
-                        socket.send(data)
-                        socket.onmessage = (evtW2) => {
-                            logger.enhance("Done.")
-                        }
+                    const request = JSON.stringify({Opcode: "PutAddress", Space: "SNES", Operands: [address.toString(16), data.byteLength.toString(16)]})
+                    console.log({request, data, firstByte: data[0]})
+                    socket.send(request)
+                    logger.enhance("Sending data...")
+                    // socket.binaryType is set to arraybuffer, sending a Uint8Array works without triggering socket.onerror
+                    socket.send(data)
+                    socket.onmessage = eventWrite => {
+                        console.log({eventWrite})
                     }
-                }, 10000)
+                }, 3000)
+                */
             }
         }
 

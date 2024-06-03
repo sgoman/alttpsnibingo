@@ -606,7 +606,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return data[0x359] > 0
+        return data[0x35B] > 0
     }
 })
 

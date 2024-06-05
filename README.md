@@ -1,12 +1,10 @@
 Autotracker for ALTTP BingoSync Races
 =====================================
 
-This will help you keep track of your bingo card for races in A Link To The Past on [Bingosync](https://bingosync.com/), eventually.
+This will help you keep track of your bingo card for races in A Link To The Past on [Bingosync](https://bingosync.com/). While only about half of the original bingo tasks that bingosync offers are trackable right now, the injection.js script is capable of generating fully tracked bingo cards with additional targets. You can also define winning conditions like the number of tiles to get or the number of bingo lines and the game will automatically switch to the end game scene. Changing the settings is performed via the chat window and those changes are picked up by any other player that uses this script as well.
 
-Right now it only contains a test page to experiment with SNI connections and a tiny selection of very basic checks.
+Later on I plan to build a user content script for the [GreaseMonkey](https://github.com/greasemonkey/greasemonkey)/[TamperMonkey](https://www.tampermonkey.net/) browser extension that integrates with bingosync.com and provides autotracking for ALTTP games.
 
-Later on I plan to build a user content script for the [GreaseMonkey](https://github.com/greasemonkey/greasemonkey)/[TamperMonkey](https://www.tampermonkey.net/) browser extension that integrates with bingosync.com and provides autotracking for most of the possible bingo tiles for ALTTP.
-Some goals might not be possible or at least trivial to track, so some user interaction might still be required.
 
 Injecting code into bingosync.com
 ---------------------------------

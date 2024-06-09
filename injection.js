@@ -926,6 +926,10 @@ const hasAll = (data, locations) => {
 
 const resultsAll = (data, locations) => locations.reduce((acc, [location, mask]) => [...acc, {location, mask, result: data[location] & mask}], [])
 
+const movePlayerPanelUnderBoard = () => {
+    document.querySelector('.board-container').parentNode.append([...document.querySelectorAll('div.panel.panel-default.fill-parent')][1])
+}
+
 const hasWon = () => {
     const [playerSquares, playerLines] = [...document.querySelectorAll('#players-panel div')].filter(e => e.textContent.includes(playerName))[0].textContent.match(/\d+/g)
     return (playerSquares >= winConditions.squares) || (playerLines >= winConditions.lines)
@@ -1146,3 +1150,5 @@ socket.onopen = e => {
     }
 }
 
+// This might be preferable to see both the board and the player stats in one column
+// movePlayerPanelUnderBoard()

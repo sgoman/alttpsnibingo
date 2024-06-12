@@ -930,8 +930,10 @@ const movePlayerPanelUnderBoard = () => {
     document.querySelector('.board-container').parentNode.append([...document.querySelectorAll('div.panel.panel-default.fill-parent')][1])
 }
 
-const hasWon = () => {
-    const [playerSquares, playerLines] = [...document.querySelectorAll('#players-panel div')].filter(e => e.textContent.includes(playerName))[0].textContent.match(/\d+/g)
+const hasWon = playerScoresLine => {
+    // old version that searched for the current player in the scores
+    // const [playerSquares, playerLines] = [...document.querySelectorAll('#players-panel div')].filter(e => e.textContent.includes(playerName))[0].textContent.match(/\d+/g)
+    const [playerSquares, playerLines] = playerScoresLine.match(/\d+/g)
     return (playerSquares >= winConditions.squares) || (playerLines >= winConditions.lines)
 }
 
@@ -1062,6 +1064,25 @@ if (chatNode !== null) {
     chatObserver.observe(chatNode, {childList: true})
 }
 
+const playerScoresObserver = new MutationObserver((mutationList, observer) => {
+    const uniques = new Set()
+    for (const mutation of mutationList) {
+        for (const node of mutation.addedNodes) {
+            const pNode = node.parentNode.parentNode.parentNode
+            if (uniques.has(pNode.id)) continue
+            uniques.add(pNode.id)
+            if (playerName != '' && pNode.innerText.includes(playerName) && hasWon(pNode.innerText)) {
+                triggerFinishGame()
+            }
+        }
+    }
+})
+
+const playerScoresNode = document.querySelector('#players-panel')
+if (playerScoresNode !== null) {
+    playerScoresObserver.observe(playerScoresNode, {childList: true, subtree: true})
+}
+
 const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -1094,8 +1115,6 @@ const processSave = (data, tiles) => {
                 node.click()
                 if ('slot' + winConditions['tile'] == tile.tileId) {
                     triggerFinishGame()
-                } else {
-                    setTimeout(() => { if (hasWon()) triggerFinishGame() }, 1000)
                 }
             } else {
                 document.querySelector('input.chat-input').value = 'I wish I could mark "' + tile.content + '"...'

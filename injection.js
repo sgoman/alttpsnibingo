@@ -906,6 +906,7 @@ evaluateAutotrackedCards()
 const playerHeading = [...document.querySelectorAll('h4')] 
 const playerName = playerHeading.length ? playerHeading[0].innerText.replace('Playing as: ', '').replace(' Disconnect', '') : ''
 const winConditions = {squares: 25, lines: 12, tile: 26}
+let gameCompleted = false
 const socket = new WebSocket("ws://127.0.0.1:8080")
 socket.binaryType = 'arraybuffer'
 
@@ -1044,6 +1045,8 @@ const handleSnapCommand = ({node, hour, minute, secondsAndName, words}) => {
 }
 
 const triggerFinishGame = () => {
+    if (gameCompleted) return
+    gameCompleted = true
     const address = 0xf50010
     const data = new Uint8Array([0x19])
     const request = JSON.stringify({Opcode: "PutAddress", Space: "SNES", Operands: [address.toString(16), data.byteLength.toString(16)]})

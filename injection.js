@@ -512,7 +512,7 @@ bingoTiles.push({
 })
 //   "Perfect Archery Game",
 //   "3 Whirlpool Pairs",
-//   "Spend 1000 rupees"
+
 bingoTiles.push({
     content: "Spend 1000 rupees",
     tileId: null,
@@ -521,7 +521,7 @@ bingoTiles.push({
         return (data[0x42C] << 8 + data[0x42B]) >= 1000
     }
 })
-//   "Spend 1500 rupees"
+
 bingoTiles.push({
     content: "Spend 1500 rupees",
     tileId: null,
@@ -530,9 +530,25 @@ bingoTiles.push({
         return (data[0x42C] << 8 + data[0x42B]) >= 1500
     }
 })
-//   "40 Arrows",
-//   "50 Arrows",
-//   "20 Bombs",
+
+bingoTiles.push({
+    content: "40 Arrows",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x377] >= 40
+    }
+})
+
+bingoTiles.push({
+    content: "50 Arrows",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x377] >= 50
+    }
+})
+
 bingoTiles.push({
     content: "20 Bombs",
     tileId: null,
@@ -541,7 +557,7 @@ bingoTiles.push({
         return data[0x343] >= 20
     }
 })
-//   "30 Bombs",
+
 bingoTiles.push({
     content: "30 Bombs",
     tileId: null,
@@ -550,7 +566,15 @@ bingoTiles.push({
         return data[0x343] >= 30
     }
 })
-//   "40 Arrows and 20 Bombs",
+
+bingoTiles.push({
+    content: "40 Arrows and 20 Bombs",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x377] >= 40 && data[0x343] >= 20
+    }
+})
 //   "8 Heart Pieces",
 bingoTiles.push({
     content: "8 Heart Pieces",
@@ -588,7 +612,7 @@ bingoTiles.push({
         return ((data[0x448] & 0xF0) >>> 4) >= 6
     }
 })
-//   "10+ Total Hearts",
+
 bingoTiles.push({
     content: "10+ Total Hearts",
     tileId: null,
@@ -597,16 +621,25 @@ bingoTiles.push({
         return data[0x36C] / 8 >= 10
     }
 })
-//   "12+ Total Hearts",
+
 bingoTiles.push({
-    content: "12+ Total Hearts",
+    content: "14+ Total Hearts",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return data[0x36C] / 8 >= 12
+        return data[0x36C] / 8 >= 14
     }
 })
-//   "Master Sword Pedestal",
+
+bingoTiles.push({
+    content: "18+ Total Hearts",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x36C] / 8 >= 18
+    }
+})
+
 bingoTiles.push({
     content: "Master Sword Pedestal",
     tileId: null,

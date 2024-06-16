@@ -102,16 +102,108 @@ bingoTiles.push({
     }
 })
 //   "Die to Trinexx",
-//   "Desert Palace Big Chest",
+//   "Eastern Palace Big Chest"
+bingoTiles.push({
+    content: "Eastern Palace Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0x191, 0x08]
+        return hasAll(data, locations)
+    }
+})
 
-//   "Tower of Hera Big Chest",
-//   "Palace of Darkness Big Chest",
-//   "Swamp Palace Big Chest",
-//   "Skull Woods Big Chest",
-//   "Thieves' Town Big Chest",
-//   "Ice Palace Big Chest",
-//   "Misery Mire Big Chest",
-//   "Turtle Rock Big Chest",
+//   "Desert Palace Big Chest"
+bingoTiles.push({
+    content: "Desert Palace Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0x67, 0x08]
+        return hasAll(data, locations)
+    }
+})
+
+//   "Tower of Hera Big Chest"
+bingoTiles.push({
+    content: "Tower of Hera Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0xf, 0x08]
+        return hasAll(data, locations)
+    }
+})
+//   "Palace of Darkness Big Chest"
+bingoTiles.push({
+    content: "Palace of Darkness Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0xb5, 0x08]
+        return hasAll(data, locations)
+    }
+})
+//   "Swamp Palace Big Chest"
+bingoTiles.push({
+    content: "Swamp Palace Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0xd, 0x08]
+        return hasAll(data, locations)
+    }
+})
+//   "Skull Woods Big Chest"
+bingoTiles.push({
+    content: "Skull Woods Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0x53, 0x08]
+        return hasAll(data, locations)
+    }
+})
+//   "Thieves' Town Big Chest"
+bingoTiles.push({
+    content: "Thieves' Town Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0x159, 0x08]
+        return hasAll(data, locations)
+    }
+})
+//   "Ice Palace Big Chest"
+bingoTiles.push({
+    content: "Ice Palace Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0x1bd, 0x08]
+        return hasAll(data, locations)
+    }
+})
+//   "Misery Mire Big Chest"
+bingoTiles.push({
+    content: "Misery Mire Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0x121, 0x08]
+        return hasAll(data, locations)
+    }
+})
+//   "Turtle Rock Big Chest"
+bingoTiles.push({
+    content: "Turtle Rock  Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [0x149, 0x08]
+        return hasAll(data, locations)
+    }
+})
 //   "Desert Palace Compass",
 bingoTiles.push({
     content: "Desert Palace Compass",

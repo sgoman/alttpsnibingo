@@ -103,6 +103,7 @@ bingoTiles.push({
 })
 //   "Die to Trinexx",
 //   "Desert Palace Big Chest",
+
 //   "Tower of Hera Big Chest",
 //   "Palace of Darkness Big Chest",
 //   "Swamp Palace Big Chest",
@@ -433,11 +434,60 @@ bingoTiles.push({
 })
 //   "40 Arrows and 20 Bombs",
 //   "8 Heart Pieces",
+bingoTiles.push({
+    content: "8 Heart Pieces",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x448] >= 8
+    }
+})
+
 //   "12 Heart Pieces",
+bingoTiles.push({
+    content: "12 Heart Pieces",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x448] >= 12
+    }
+})
 //   "4 Heart Containers",
+bingoTiles.push({
+    content: "4 Heart Containers",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return ((data[0x448] & 0xF0) >> 4) >= 4
+    }
+})
 //   "6 Heart Containers",
+bingoTiles.push({
+    content: "6 Heart Containers",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return ((data[0x448] & 0xF0) >> 4) >= 6
+    }
+})
 //   "10+ Total Hearts",
+bingoTiles.push({
+    content: "10+ Total Hearts",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x36C] / 8 >= 10
+    }
+})
 //   "12+ Total Hearts",
+bingoTiles.push({
+    content: "12+ Total Hearts",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x36C] / 8 >= 12
+    }
+})
 //   "Master Sword Pedestal",
 bingoTiles.push({
     content: "Master Sword Pedestal",
@@ -449,6 +499,15 @@ bingoTiles.push({
     }
 })
 //   "2 Pendants",
+bingoTiles.push({
+    content: "2 Pendants",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x429, 0x02]]
+        return hasAll(data, locations)
+    }
+})
 //   "2 Crystals",
 //   "3 Crystals",
 //   "2 Light World Dungeons",

@@ -659,22 +659,22 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "2 Crystals"
+
 bingoTiles.push({
     content: "2 Crystals",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return data[0x37A] >= 0x03
+        return bitcount(data[0x37a]) === 2
     }
 })
-//   "3 Crystals"
+
 bingoTiles.push({
     content: "3 Crystals",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return data[0x37A] >= 0x07
+        return bitcount(data[0x37a]) === 3
     }
 })
 //   "2 Light World Dungeons",
@@ -1160,6 +1160,15 @@ const hasAll = (data, locations) => {
     return true
 }
 
+function bitcount(byte) {
+    let count = 0;
+    while (byte > 0) {
+        count = count + 1;
+        byte = byte & (byte - 1)
+    }
+    return count
+}
+
 const resultsAll = (data, locations) => locations.reduce((acc, [location, mask]) => [...acc, {location, mask, result: data[location] & mask}], [])
 
 const movePlayerPanelUnderBoard = () => {
@@ -1226,9 +1235,9 @@ const handleLockoutCommand = ({node, hour, minute, secondsAndName, words}) => {
     if (words.length > 2 && /^([1-9]|10)$/.test(words[1])) {
         const id = '#' + (/^([1-9]|1\d|2[0-5])$/.test(words[2]) ? 'slot' + words[2] : words[2])
         document.querySelector(id).dataset.lockout = words[1]
-    } else if (words.length == 2 && /^([1-9]|10)$/.test(words[1])) {
+    } else if (words.length === 2 && /^([1-9]|10)$/.test(words[1])) {
         [...document.querySelectorAll('.blanksquare')].forEach(t => t.dataset.lockout = words[1])
-    } else if (words.length == 1) {
+    } else if (words.length === 1) {
         const reply = [...document.querySelectorAll('.blanksquare')].map(t => `${t.id} = ${t.dataset.lockout}`).join(', ')
         addToChat({node, hour, minute, secondsAndName, words, reply})
     } else {
@@ -1309,7 +1318,7 @@ const playerScoresObserver = new MutationObserver((mutationList, observer) => {
             const pNode = node.parentNode.parentNode.parentNode
             if (uniques.has(pNode.id)) continue
             uniques.add(pNode.id)
-            if (playerName != '' && pNode.innerText.includes(playerName) && hasWon(pNode.innerText)) {
+            if (playerName !== '' && pNode.innerText.includes(playerName) && hasWon(pNode.innerText)) {
                 triggerFinishGame()
             }
         }
@@ -1351,7 +1360,7 @@ const processSave = (data, tiles) => {
             const node = document.querySelector(`#${tile.tileId}`)
             if (node.title.split(' ').filter(t => t.length).length < (node.dataset.lockout || 10)) {
                 node.click()
-                if ('slot' + winConditions['tile'] == tile.tileId) {
+                if ('slot' + winConditions['tile'] === tile.tileId) {
                     triggerFinishGame()
                 }
             } else {

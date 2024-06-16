@@ -535,6 +535,15 @@ bingoTiles.push({
     }
 })
 //   "Activate the Flute",
+bingoTiles.push({
+    content: "Activate the Flute",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x34C, 0x03]]
+        return hasAll(data, locations)
+    }
+})
 //   "Bottled Bee",
 //   "Bottled Faerie",
 //   "Bottled Potion",

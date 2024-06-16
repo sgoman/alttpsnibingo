@@ -2,7 +2,7 @@ let trackerTimer = null
 const bingoTiles = []
 
 // All Bingo Cards in alttp_randomizer_generator.js, trying to implement as many as possible...
-//   "Defeat Armos",
+
 bingoTiles.push({
     content: "Defeat Armos",
     tileId: null,
@@ -12,7 +12,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Lanmolas",
+
 bingoTiles.push({
     content: "Defeat Lanmolas",
     tileId: null,
@@ -22,7 +22,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Moldorm",
+
 bingoTiles.push({
     content: "Defeat Moldorm",
     tileId: null,
@@ -32,7 +32,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Agahnim",
+
 bingoTiles.push({
     content: "Defeat Agahnim",
     tileId: null,
@@ -41,7 +41,7 @@ bingoTiles.push({
         return data[0x3C5] >= 3
     }
 })
-//   "Defeat Helmasaur King",
+
 bingoTiles.push({
     content: "Defeat Helmasaur King",
     tileId: null,
@@ -51,7 +51,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Arrghus",
+
 bingoTiles.push({
     content: "Defeat Arrghus",
     tileId: null,
@@ -61,7 +61,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Mothula",
+
 bingoTiles.push({
     content: "Defeat Mothula",
     tileId: null,
@@ -71,7 +71,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Blind",
+
 bingoTiles.push({
     content: "Defeat Blind",
     tileId: null,
@@ -81,7 +81,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Kholdstare",
+
 bingoTiles.push({
     content: "Defeat Kholdstare",
     tileId: null,
@@ -101,109 +101,119 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
+
 //   "Die to Trinexx",
-//   "Eastern Palace Big Chest"
+
 bingoTiles.push({
     content: "Eastern Palace Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0x191, 0x08]
+        const locations = [[0x154, 0x10]] // Nieten: [[0x150, 0x10]], [0x152, 0x10], [0x170, 0x10]
         return hasAll(data, locations)
     }
 })
 
-//   "Desert Palace Big Chest"
 bingoTiles.push({
     content: "Desert Palace Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0x67, 0x08]
+        const locations = [[0x10a, 0x10]] // Nieten: [0xea, 0x10]
         return hasAll(data, locations)
     }
 })
 
-//   "Tower of Hera Big Chest"
 bingoTiles.push({
     content: "Tower of Hera Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0xf, 0x08]
+        const locations = [[0x4e, 0x10]] // Nieten: [[0x4e, 0x20]]
         return hasAll(data, locations)
     }
 })
-//   "Palace of Darkness Big Chest"
+
 bingoTiles.push({
     content: "Palace of Darkness Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0xb5, 0x08]
+        const locations = [[0xd4, 0x10]] // Nieten: [[0xd4, 0x20]]
         return hasAll(data, locations)
     }
 })
-//   "Swamp Palace Big Chest"
+
 bingoTiles.push({
     content: "Swamp Palace Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0xd, 0x08]
+        const locations = [[0xcc, 0x10]]
         return hasAll(data, locations)
     }
 })
-//   "Skull Woods Big Chest"
+
 bingoTiles.push({
     content: "Skull Woods Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0x53, 0x08]
+        const locations = [[0xb0, 0x20]] // Nieten: [[0xb2, 0x10]]
         return hasAll(data, locations)
     }
 })
-//   "Thieves' Town Big Chest"
+
 bingoTiles.push({
     content: "Thieves' Town Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0x159, 0x08]
+        const locations = [[0x88, 0x10]]
         return hasAll(data, locations)
     }
 })
-//   "Ice Palace Big Chest"
+
 bingoTiles.push({
     content: "Ice Palace Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0x1bd, 0x08]
+        const locations = [[0x13c, 0x10]]
         return hasAll(data, locations)
     }
 })
-//   "Misery Mire Big Chest"
+
 bingoTiles.push({
     content: "Misery Mire Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0x121, 0x08]
+        const locations = [[0x186, 0x20]]
         return hasAll(data, locations)
     }
 })
-//   "Turtle Rock Big Chest"
+
 bingoTiles.push({
-    content: "Turtle Rock  Big Chest",
+    content: "Turtle Rock Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [0x149, 0x08]
+        const locations = [[0x1aa, 0x80]]
         return hasAll(data, locations)
     }
 })
+
+bingoTiles.push({
+    content: "Ganons Tower Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x7a, 0x40]]
+        return hasAll(data, locations)
+    }
+})
+
 //   "Desert Palace Compass",
 bingoTiles.push({
     content: "Desert Palace Compass",
@@ -502,8 +512,24 @@ bingoTiles.push({
 })
 //   "Perfect Archery Game",
 //   "3 Whirlpool Pairs",
-//   "Spend 1000 rupees",
-//   "Spend 1500 rupees",
+//   "Spend 1000 rupees"
+bingoTiles.push({
+    content: "Spend 1000 rupees",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (data[0x42C] << 8 + data[0x42B]) >= 1000
+    }
+})
+//   "Spend 1500 rupees"
+bingoTiles.push({
+    content: "Spend 1500 rupees",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (data[0x42C] << 8 + data[0x42B]) >= 1500
+    }
+})
 //   "40 Arrows",
 //   "50 Arrows",
 //   "20 Bombs",
@@ -550,7 +576,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return ((data[0x448] & 0xF0) >> 4) >= 4
+        return ((data[0x448] & 0xF0) >>> 4) >= 4
     }
 })
 //   "6 Heart Containers",
@@ -559,7 +585,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return ((data[0x448] & 0xF0) >> 4) >= 6
+        return ((data[0x448] & 0xF0) >>> 4) >= 6
     }
 })
 //   "10+ Total Hearts",
@@ -600,8 +626,24 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "2 Crystals",
-//   "3 Crystals",
+//   "2 Crystals"
+bingoTiles.push({
+    content: "2 Crystals",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x37A] >= 0x03
+    }
+})
+//   "3 Crystals"
+bingoTiles.push({
+    content: "3 Crystals",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x37A] >= 0x07
+    }
+})
 //   "2 Light World Dungeons",
 //   "3 Light World Dungeons",
 //   "2 Dark World Dungeons",
@@ -691,7 +733,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x34C, 0x03]]
+        const locations = [[0x38C, 0x01]]
         return hasAll(data, locations)
     }
 })

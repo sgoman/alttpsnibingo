@@ -770,10 +770,42 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Bottled Bee",
-//   "Bottled Faerie",
-//   "Bottled Potion",
-//   "Lantern or Fire Rod",
+
+bingoTiles.push({
+    content: "Bottled Bee",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return
+            hasAll(data, [[0x35C, 0x07]]) || hasAll(data, [[0x35C, 0x08]]) ||
+            hasAll(data, [[0x35D, 0x07]]) || hasAll(data, [[0x35D, 0x08]]) ||
+            hasAll(data, [[0x35E, 0x07]]) || hasAll(data, [[0x35E, 0x08]]) ||
+            hasAll(data, [[0x35F, 0x07]]) || hasAll(data, [[0x35F, 0x08]])
+    }
+})
+
+bingoTiles.push({
+    content: "Bottled Faerie",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return hasAll(data, [[0x35C, 0x06]]) || hasAll(data, [[0x35D, 0x06]]) || hasAll(data, [[0x35E, 0x06]]) || hasAll(data, [[0x35F, 0x06]])
+    }
+})
+
+bingoTiles.push({
+    content: "Bottled Potion",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return
+            hasAll(data, [[0x35C, 0x03]]) || hasAll(data, [[0x35C, 0x04]]) || hasAll(data, [[0x35C, 0x05]]) ||
+            hasAll(data, [[0x35D, 0x03]]) || hasAll(data, [[0x35D, 0x04]]) || hasAll(data, [[0x35D, 0x05]]) ||
+            hasAll(data, [[0x35E, 0x03]]) || hasAll(data, [[0x35E, 0x04]]) || hasAll(data, [[0x35E, 0x05]]) ||
+            hasAll(data, [[0x35F, 0x03]]) || hasAll(data, [[0x35F, 0x04]]) || hasAll(data, [[0x35F, 0x05]])
+    }
+})
+
 bingoTiles.push({
     content: "Lantern or Fire Rod",
     tileId: null,
@@ -782,7 +814,7 @@ bingoTiles.push({
         return hasAll(data, [[0x34A, 0x01]]) || hasAll(data, [[0x345, 0x01]])
     }
 })
-//   "Collect Rod + Cane of the same color",
+
 bingoTiles.push({
     content: "Collect Rod + Cane of the same color",
     tileId: null,

@@ -102,7 +102,8 @@ bingoTiles.push({
     }
 })
 
-//   "Die to Trinexx",
+// TODO "Defeat Trinexx"
+// TODO "Die to Trinexx",
 
 // bingoTiles.push({
 //     content: "Eastern Palace Big Chest",
@@ -257,7 +258,6 @@ bingoTiles.push({
     }
 })
 
-//   "Desert Palace Compass",
 bingoTiles.push({
     content: "Desert Palace Compass",
     tileId: null,
@@ -267,7 +267,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Tower of Hera Compass",
+
 bingoTiles.push({
     content: "Tower of Hera Compass",
     tileId: null,
@@ -277,7 +277,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Palace of Darkness Compass",
+
 bingoTiles.push({
     content: "Palace of Darkness Compass",
     tileId: null,
@@ -287,7 +287,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Swamp Palace Compass",
+
 bingoTiles.push({
     content: "Swamp Palace Compass",
     tileId: null,
@@ -297,7 +297,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Skull Woods Compass",
+
 bingoTiles.push({
     content: "Skull Woods Compass",
     tileId: null,
@@ -307,7 +307,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Thieves' Town Compass",
+
 bingoTiles.push({
     content: "Thieves' Town Compass",
     tileId: null,
@@ -317,7 +317,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Ice Palace Compass",
+
 bingoTiles.push({
     content: "Ice Palace Compass",
     tileId: null,
@@ -327,7 +327,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Misery Mire Compass",
+
 bingoTiles.push({
     content: "Misery Mire Compass",
     tileId: null,
@@ -337,7 +337,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Turtle Rock Compass",
+
 bingoTiles.push({
     content: "Turtle Rock Compass",
     tileId: null,
@@ -347,7 +347,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Desert Map",
+
 bingoTiles.push({
     content: "Desert Map",
     tileId: null,
@@ -357,7 +357,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Hera Map",
+
 bingoTiles.push({
     content: "Hera Map",
     tileId: null,
@@ -367,7 +367,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Darkness Map",
+
 bingoTiles.push({
     content: "Darkness Map",
     tileId: null,
@@ -377,7 +377,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Swamp Map",
+
 bingoTiles.push({
     content: "Swamp Map",
     tileId: null,
@@ -387,7 +387,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Skull Map",
+
 bingoTiles.push({
     content: "Skull Map",
     tileId: null,
@@ -397,7 +397,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Thieves' Map",
+
 bingoTiles.push({
     content: "Thieves' Map",
     tileId: null,
@@ -407,7 +407,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Ice Map",
+
 bingoTiles.push({
     content: "Ice Map",
     tileId: null,
@@ -417,7 +417,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Mire Map",
+
 bingoTiles.push({
     content: "Mire Map",
     tileId: null,
@@ -427,7 +427,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "TRock Map",
+
 bingoTiles.push({
     content: "TRock Map",
     tileId: null,
@@ -437,11 +437,11 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Open 5 Small Key Doors (Palace of Darkness)",
-//   "Open 4 Small Key Doors (Skull Woods)",
-//   "Open 6 Small Key Doors (Ice Palace)",
-//   "Open 6 Small Key Doors (Misery Mire)",
-//   "Open Purple Chest",
+// TODO "Open 5 Small Key Doors (Palace of Darkness)",
+// TODO "Open 4 Small Key Doors (Skull Woods)",
+// TODO "Open 6 Small Key Doors (Ice Palace)",
+// TODO "Open 6 Small Key Doors (Misery Mire)",
+
 bingoTiles.push({
     content: "Open Purple Chest",
     tileId: null,
@@ -451,7 +451,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Break Ether Monolith",
+
 bingoTiles.push({
     content: "Break Ether Monolith",
     tileId: null,
@@ -461,7 +461,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Break Bombos Monolith",
+
 bingoTiles.push({
     content: "Break Bombos Monolith",
     tileId: null,
@@ -471,9 +471,9 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Open Misery Mire",
-//   "Open Turtle Rock",
-//   "Death Mountain Lonely Island",
+// TODO "Open Misery Mire",
+// TODO "Open Turtle Rock",
+// TODO "Death Mountain Lonely Island",
 bingoTiles.push({
     content: "Death Mountain Lonely Island",
     tileId: null,
@@ -483,7 +483,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Lumberjack Tree",
+
 bingoTiles.push({
     content: "Lumberjack Tree",
     tileId: null,
@@ -493,7 +493,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Byrna Cave",
+
 bingoTiles.push({
     content: "Byrna Cave",
     tileId: null,
@@ -503,7 +503,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Mimic Cave",
+
 bingoTiles.push({
     content: "Mimic Cave",
     tileId: null,
@@ -513,7 +513,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Lake Hylia Island",
+
 bingoTiles.push({
     content: "Lake Hylia Island",
     tileId: null,
@@ -523,9 +523,9 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Bonk Grave",
+
 bingoTiles.push({
-    content: "Bonk Grave",
+    content: "Kings Tomb",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -533,7 +533,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Rescue the Dwarf",
+
 bingoTiles.push({
     content: "Rescue the Dwarf",
     tileId: null,
@@ -543,7 +543,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Speak to Fat Faerie",
+
 bingoTiles.push({
     content: "Pyramid Grave Robber",
     tileId: null,
@@ -553,16 +553,15 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Perfect Archery Game",
-//   "3 Whirlpool Pairs",
+// TODO "Perfect Archery Game",
+// TODO "3 Whirlpool Pairs",
 
 bingoTiles.push({
     content: "Spend 1000 rupees",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME triggert schon wenn man 100 rupees ausgibt
-        return (data[0x42C] << 8 + data[0x42B]) >= 1000
+        return (data[0x42B] << 8 + data[0x42C]) >= 1000
     }
 })
 
@@ -571,8 +570,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME triggert schon wenn man 100 rupees ausgibt
-        return (data[0x42C] << 8 + data[0x42B]) >= 1500
+        return (data[0x42B] << 8 + data[0x42C]) >= 1500
     }
 })
 
@@ -620,7 +618,7 @@ bingoTiles.push({
         return data[0x377] >= 40 && data[0x343] >= 20
     }
 })
-//   "8 Heart Pieces",
+
 bingoTiles.push({
     content: "8 Heart Pieces",
     tileId: null,
@@ -630,7 +628,6 @@ bingoTiles.push({
     }
 })
 
-//   "12 Heart Pieces",
 bingoTiles.push({
     content: "12 Heart Pieces",
     tileId: null,
@@ -639,27 +636,29 @@ bingoTiles.push({
         return data[0x448] >= 12
     }
 })
-//   "4 Heart Containers",
+
 bingoTiles.push({
     content: "4 Heart Containers",
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME Vermutlich nur errechenbar über die Heart Pieces
         return ((data[0x448] & 0xF0) >>> 4) >= 4
     }
 })
-//   "6 Heart Containers",
+
 bingoTiles.push({
     content: "6 Heart Containers",
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME Vermutlich nur errechenbar über die Heart Pieces
         return ((data[0x448] & 0xF0) >>> 4) >= 6
     }
 })
 
 bingoTiles.push({
-    content: "10+ Total Hearts",
+    content: "10 Total Hearts",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -668,7 +667,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "14+ Total Hearts",
+    content: "14 Total Hearts",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -677,7 +676,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "18+ Total Hearts",
+    content: "18 Total Hearts",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -722,18 +721,60 @@ bingoTiles.push({
         return bitcount(data[0x37a]) === 3
     }
 })
-//   "2 Light World Dungeons",
-//   "3 Light World Dungeons",
-//   "2 Dark World Dungeons",
-//   "3 Dark World Dungeons",
-//   "Bomb open a cracked floor in any dungeon",
-//   "Bomb open a cracked door in any dungeon",
-//   "Move or destroy a wall in any dungeon",
-//   "Hit Crystal Switch with Frozen Enemy",
-//   "Read 3 Dark World Dungeon Telepathic Tiles",
-//   "2 Dungeon Blue Rupee Rooms",
-//   "Spawn a chest in 2 dungeons",
-//   "Collect Sahasrahla's Prize",
+
+bingoTiles.push({
+    content: "2 Light World Dungeons",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const bossprizes = (data[0x191] & 0x08 >>> 3) + (data[0x067] & 0x08 >>> 2) + (data[0x00F] & 0x08 >>> 1)
+        return bitcount(bossprizes) === 2
+    }
+})
+
+bingoTiles.push({
+    content: "3 Light World Dungeons",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const bossprizes = (data[0x191] & 0x08 >>> 3) + (data[0x067] & 0x08 >>> 2) + (data[0x00F] & 0x08 >>> 1)
+        return bitcount(bossprizes) === 3
+    }
+})
+
+bingoTiles.push({
+    content: "2 Dark World Dungeons",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const bossprizes =
+            (data[0x0B5] & 0x08 >>> 3) + (data[0x00D] & 0x08 >>> 2) + (data[0x053] & 0x08 >>> 1) +
+            (data[0x159 & 0x08 >>> 4]) + (data[0x1BD & 0x08 >>> 5]) + (data[0x121] & 0x08 >>> 6)
+            // FIXME Trinexx Adress is missing (data[?] & 0x08 >>> 7)
+        return bitcount(bossprizes) === 2
+    }
+})
+
+bingoTiles.push({
+    content: "3 Dark World Dungeons",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const bossprizes =
+            (data[0x0B5] & 0x08 >>> 3) + (data[0x00D] & 0x08 >>> 2) + (data[0x053] & 0x08 >>> 1) +
+            (data[0x159 & 0x08 ]) + (data[0x1BD & 0x08 << 1]) + (data[0x121] & 0x08 << 2)
+        // FIXME Trinexx Adress is missing (data[?] & 0x08 << 3)
+        return bitcount(bossprizes) === 3
+    }
+})
+// TODO "Bomb open a cracked floor in any dungeon",
+// TODO "Bomb open a cracked door in any dungeon",
+// TODO "Move or destroy a wall in any dungeon",
+// TODO "Hit Crystal Switch with Frozen Enemy",
+// TODO "Read 3 Dark World Dungeon Telepathic Tiles",
+// TODO "2 Dungeon Blue Rupee Rooms",
+// TODO "Spawn a chest in 2 dungeons",
+
 bingoTiles.push({
     content: "Collect Sahasrahla's Prize",
     tileId: null,
@@ -743,29 +784,29 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Pull a Tounge Statue",
-//   "Clear 2 Tile Rooms",
-//   "Finish in a Light World Dungeon Fairy Room",
-//   "Finish in a Dark Room",
-//   "Finish in a Rupee Floor Room",
-//   "Finish in a Trap Room",
-//   "Finish in a Prison Cell",
-//   "Finish in a Room with a Bumper",
-//   "Finish in a Room with an Orange Warp",
-//   "Finish in a Room with a Firebar",
-//   "Finish in a Room with a Firesnake",
-//   "Finish as a Bunny",
-//   "Defeat a Deadrock",
-//   "Defeat a Lynel",
-//   "Defeat all 6 Freezors",
-//   "Defeat a Red Eyegore and Red Mimic",
-//   "Burn a Floating Stalfos Skull",
-//   "Burn a Ball + Chain Trooper",
-//   "Freeze a Dodongo",
-//   "Freeze a Bomb Slug",
-//   "Stun a Pikit",
-//   "Stun a Turtle",
-//   "Collect the Bow",
+// TODO "Pull a Tounge Statue",
+// TODO "Clear 2 Tile Rooms",
+// TODO "Finish in a Light World Dungeon Fairy Room",
+// TODO "Finish in a Dark Room",
+// TODO "Finish in a Rupee Floor Room",
+// TODO "Finish in a Trap Room",
+// TODO "Finish in a Prison Cell",
+// TODO "Finish in a Room with a Bumper",
+// TODO "Finish in a Room with an Orange Warp",
+// TODO "Finish in a Room with a Firebar",
+// TODO "Finish in a Room with a Firesnake",
+// TODO "Finish as a Bunny",
+// TODO "Defeat a Deadrock",
+// TODO "Defeat a Lynel",
+// TODO "Defeat all 6 Freezors",
+// TODO "Defeat a Red Eyegore and Red Mimic",
+// TODO "Burn a Floating Stalfos Skull",
+// TODO "Burn a Ball + Chain Trooper",
+// TODO "Freeze a Dodongo",
+// TODO "Freeze a Bomb Slug",
+// TODO "Stun a Pikit",
+// TODO "Stun a Turtle",
+
 bingoTiles.push({
     content: "Collect the Bow",
     tileId: null,
@@ -775,7 +816,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Collect the Lantern",
+
 bingoTiles.push({
     content: "Collect the Lantern",
     tileId: null,
@@ -785,7 +826,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Collect the Hookshot",
+
 bingoTiles.push({
     content: "Collect the Hookshot",
     tileId: null,
@@ -795,7 +836,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Collect a Medallion",
+
 bingoTiles.push({
     content: "Collect a Medallion",
     tileId: null,
@@ -805,7 +846,7 @@ bingoTiles.push({
         return hasAll(data, [[0x347, 0x01]]) || hasAll(data, [[0x348, 0x01]]) || hasAll(data, [[0x349, 0x01]])
     }
 })
-//   "Activate the Flute",
+
 bingoTiles.push({
     content: "Activate the Flute",
     tileId: null,
@@ -821,8 +862,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return
-            hasAll(data, [[0x35C, 0x07]]) || hasAll(data, [[0x35C, 0x08]]) ||
+        return hasAll(data, [[0x35C, 0x07]]) || hasAll(data, [[0x35C, 0x08]]) ||
             hasAll(data, [[0x35D, 0x07]]) || hasAll(data, [[0x35D, 0x08]]) ||
             hasAll(data, [[0x35E, 0x07]]) || hasAll(data, [[0x35E, 0x08]]) ||
             hasAll(data, [[0x35F, 0x07]]) || hasAll(data, [[0x35F, 0x08]])
@@ -843,8 +883,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return
-            hasAll(data, [[0x35C, 0x03]]) || hasAll(data, [[0x35C, 0x04]]) || hasAll(data, [[0x35C, 0x05]]) ||
+        return hasAll(data, [[0x35C, 0x03]]) || hasAll(data, [[0x35C, 0x04]]) || hasAll(data, [[0x35C, 0x05]]) ||
             hasAll(data, [[0x35D, 0x03]]) || hasAll(data, [[0x35D, 0x04]]) || hasAll(data, [[0x35D, 0x05]]) ||
             hasAll(data, [[0x35E, 0x03]]) || hasAll(data, [[0x35E, 0x04]]) || hasAll(data, [[0x35E, 0x05]]) ||
             hasAll(data, [[0x35F, 0x03]]) || hasAll(data, [[0x35F, 0x04]]) || hasAll(data, [[0x35F, 0x05]])
@@ -869,7 +908,7 @@ bingoTiles.push({
         return hasAll(data, [[0x345, 0x01], [0x350, 0x01]]) || hasAll(data, [[0x346, 0x01], [0x351, 0x01]])
     }
 })
-//   "Collect Rod + Cane of opposite colors",
+
 bingoTiles.push({
     content: "Collect Rod + Cane of opposite colors",
     tileId: null,
@@ -879,7 +918,7 @@ bingoTiles.push({
         return hasAll(data, [[0x345, 0x01], [0x351, 0x01]]) || hasAll(data, [[0x346, 0x01], [0x350, 0x01]])
     }
 })
-//   "3 A-Items",
+
 bingoTiles.push({
     content: "3 A-Items",
     tileId: null,
@@ -888,7 +927,7 @@ bingoTiles.push({
         return (data[0x355] & 0x01) + (data[0x356] & 0x01) + (data[0x357] & 0x01) + data[0x354] >= 3
     }
 })
-//   "Upgrade Shield",
+
 bingoTiles.push({
     content: "Upgrade Shield",
     tileId: null,
@@ -897,21 +936,21 @@ bingoTiles.push({
         return data[0x35A] > 1
     }
 })
-//   "Upgrade Sword",
+
 bingoTiles.push({
     content: "Upgrade Sword",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return data[0x359] > 1 && data[0x359] != 0xFF
+        return data[0x359] > 1 && data[0x359] !== 0xFF
     }
 })
-//   "Visit the Catfish with a Follower",
-//   "Pay the Hamburger Helper Hand",
-//   "Buy from 2 Shops in each World",
-//   "4 NPC/Object Followers",
-//   "Reveal a Hidden Cave under a rock in both Worlds",
-//   "Complete 1 Line of Y-Items"
+// TODO "Visit the Catfish with a Follower",
+// TODO "Pay the Hamburger Helper Hand",
+// TODO "Buy from 2 Shops in each World",
+// TODO "4 NPC/Object Followers",
+// TODO "Reveal a Hidden Cave under a rock in both Worlds",
+// TODO "Complete 1 Line of Y-Items"
 
 bingoTiles.push({
     content: "Upgrade Tunic",

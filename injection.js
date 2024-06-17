@@ -217,7 +217,7 @@ bingoTiles.push({
     check: function(data) {
         const locations = [[0x13c, 0x10]]
         return hasAll(data, locations)
-        // more addresses if IP chests:
+        // more addresses of IP chests:
         // [0x5c, 0x10] Pengator Ice Floor chest
         // [0xfc, 0x10] Freezor Room Chest above big chest
         // [0x15c, 0x10] Ice-T room chest
@@ -233,9 +233,16 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x186, 0x20]]
+        const locations = [[0x186, 0x10]]
         return hasAll(data, locations)
     }
+    // more adresses of MM chests:
+    // [0x144, 0x10] bridge chest
+    // [0x166, 0x10] spike chest
+    // [0x184, 0x10] gitter chest
+    // [0x182, 0x10] ? Either cutscene chest or north of tile room chest
+    // [0x1a2, 0x10] ? Either cutscene chest or north of tile room chest
+    // [0x121, 0x08] MM Boss Prize
 })
 
 bingoTiles.push({
@@ -243,9 +250,15 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x1aa, 0x80]]
+        const locations = [[0x16c, 0x10]]
         return hasAll(data, locations)
     }
+    // more adresses of TR chests:
+    // [0x1ac, 0x10] Entrance bottom left chest
+    // [0x16e, 0x10] Double roller room chest left
+    // [0x16e, 0x20] Double roller room chest right
+
+    // [0x121, 0x08] TR Boss Prize
 })
 
 bingoTiles.push({
@@ -561,6 +574,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME triggers already at 100 rupees spent
         return (data[0x42B] << 8 + data[0x42C]) >= 1000
     }
 })
@@ -570,6 +584,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME triggers already at 100 rupees spent
         return (data[0x42B] << 8 + data[0x42C]) >= 1500
     }
 })
@@ -862,6 +877,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME already triggers with empty bottle
         return hasAll(data, [[0x35C, 0x07]]) || hasAll(data, [[0x35C, 0x08]]) ||
             hasAll(data, [[0x35D, 0x07]]) || hasAll(data, [[0x35D, 0x08]]) ||
             hasAll(data, [[0x35E, 0x07]]) || hasAll(data, [[0x35E, 0x08]]) ||
@@ -883,6 +899,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME already triggers with empty bottle
         return hasAll(data, [[0x35C, 0x03]]) || hasAll(data, [[0x35C, 0x04]]) || hasAll(data, [[0x35C, 0x05]]) ||
             hasAll(data, [[0x35D, 0x03]]) || hasAll(data, [[0x35D, 0x04]]) || hasAll(data, [[0x35D, 0x05]]) ||
             hasAll(data, [[0x35E, 0x03]]) || hasAll(data, [[0x35E, 0x04]]) || hasAll(data, [[0x35E, 0x05]]) ||

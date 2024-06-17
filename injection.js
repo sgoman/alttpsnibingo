@@ -165,8 +165,12 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0xcc, 0x10]]
+        const locations = [[0x6c, 0x10]]
         return hasAll(data, locations)
+        // more adresses of SP Chests:
+        // [0x50, 0x10] Entrance Chest
+        // [0x6e, 0x10] Chest behind bombable wall
+        // [0xd, 0x08] SP Boss Prize
     }
 })
 
@@ -175,8 +179,15 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0xb0, 0x20]] // Nieten: [[0xb2, 0x10]]
+        const locations = [[0xb0, 0x10]]
         return hasAll(data, locations)
+        // more addresses of SW chests:
+        // [0xae, 0x20] Trapped Gibdos chest
+        // [0xce, 0x10] Holes and firebar room chest
+        // [0xd0, 0x10] Pinballroom chest
+        // [0xae, 0x10] Behind the statue chest
+        // [0xb2, 0x10] Bridge Chest
+        // [0x53, 0x08] SW Boss Prize
     }
 })
 
@@ -187,6 +198,14 @@ bingoTiles.push({
     check: function(data) {
         const locations = [[0x88, 0x10]]
         return hasAll(data, locations)
+        // more adresses of TT chests:
+        // [0x1b6, 0x10] ? one the first 2 chests
+        // [0x196, 0x10] ? one the first 3 chests
+        // [0x1b8, 0x10] ? one the first 3 chests
+        // [0x1b6, 0x20] Vanilla Big Key chest
+        // [0xca, 0x10] Attic chest
+        // [0x8a, 0x10] Maidens Cell chest
+        // [0x159, 0x08] TT Boss Prize
     }
 })
 
@@ -197,6 +216,14 @@ bingoTiles.push({
     check: function(data) {
         const locations = [[0x13c, 0x10]]
         return hasAll(data, locations)
+        // more addresses if IP chests:
+        // [0x5c, 0x10] Pengator Ice Floor chest
+        // [0xfc, 0x10] Freezor Room Chest above big chest
+        // [0x15c, 0x10] Ice-T room chest
+        // [0xbe, 0x10] ? Either spike room or Ice-H room chest
+        // [0x7e, 0x10] ? Icebreaker chest
+        // [0x3e, 0x10] ? Also Icebreaker chest??!
+        // [0x1bd, 0x08] IP Boss Prize
     }
 })
 
@@ -534,6 +561,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME triggert schon wenn man 100 rupees ausgibt
         return (data[0x42C] << 8 + data[0x42B]) >= 1000
     }
 })
@@ -543,6 +571,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME triggert schon wenn man 100 rupees ausgibt
         return (data[0x42C] << 8 + data[0x42B]) >= 1500
     }
 })

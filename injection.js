@@ -104,23 +104,31 @@ bingoTiles.push({
 
 //   "Die to Trinexx",
 
-bingoTiles.push({
-    content: "Eastern Palace Big Chest",
-    tileId: null,
-    isOpen: true,
-    check: function(data) {
-        const locations = [[0x154, 0x10]] // Nieten: [[0x150, 0x10]], [0x152, 0x10], [0x170, 0x10]
-        return hasAll(data, locations)
-    }
-})
+// bingoTiles.push({
+//     content: "Eastern Palace Big Chest",
+//     tileId: null,
+//     isOpen: true,
+//     check: function(data) {
+//         // FIXME Address of Big Chest? It's none of these: [0x172, 0x10], [0x154, 0x10], [0x150, 0x10], [0x152, 0x10], [0x170, 0x10]
+//         const locations = [[?]]
+//         return hasAll(data, locations)
+//     }
+// })
 
 bingoTiles.push({
     content: "Desert Palace Big Chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x10a, 0x10]] // Nieten: [0xea, 0x10]
+        const locations = [[0xe6, 0x10]]
         return hasAll(data, locations)
+        // more adresses of Desert Palace Chests:
+        //  [0xe6, 0x10] DP Big Chest
+        //  [0xe7, 0x04] DP Torch
+        //  [0xe8, 0x10] DP Small Key Chest
+        //  [0x10a, 0x10] DP Right Side Chest 1
+        //  [0xea, 0x10] DP Right Side Chest 2
+        //  [0x67, 0x08] DP Boss Prize
     }
 })
 
@@ -129,7 +137,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x4e, 0x10]] // Nieten: [[0x4e, 0x20]]
+        const locations = [[0x4e, 0x10]]
         return hasAll(data, locations)
     }
 })
@@ -139,8 +147,16 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0xd4, 0x10]] // Nieten: [[0xd4, 0x20]]
+        const locations = [[0x34, 0x10]]
         return hasAll(data, locations)
+        // more adresses of PoD Chests:
+        //  [0xd4, 0x10] ?
+        //  [0xd4, 0x20] ?
+        //  [0x34, 0x20] Turtle chest
+        //  [0x34, 0x40] Hallway chest
+        //  [0x32, 0x10] Dark Maze top left chest
+        //  [0x32, 0x20] Dark Maze bottom right chest
+        //  [0xb5, 0x08] PoD Boss Prize
     }
 })
 

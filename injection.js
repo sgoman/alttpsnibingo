@@ -402,7 +402,15 @@ bingoTiles.push({
     }
 })
 
-// TODO Eastern Palace Compass
+bingoTiles.push({
+    content: "Eastern Palace Compass",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x365, 0x20]]
+        return hasAll(data, locations)
+    }
+})
 
 bingoTiles.push({
     content: "Desert Palace Compass",
@@ -495,7 +503,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Desert Map",
+    content: "Desert Palace Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -505,7 +513,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Hera Map",
+    content: "Tower of Hera Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -515,7 +523,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Darkness Map",
+    content: "Palace of Darkness Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -525,7 +533,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Swamp Map",
+    content: "Swamp Palace Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -535,7 +543,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Skull Map",
+    content: "Skull Woods Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -545,7 +553,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Thieves' Map",
+    content: "Thieves' Town Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -555,7 +563,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Ice Map",
+    content: "Ice Palace Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -565,7 +573,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Mire Map",
+    content: "Misery Mire Map",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -575,7 +583,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "TRock Map",
+    content: "Turtle Rock Map",
     tileId: null,
     isOpen: true,
     check: function(data) {

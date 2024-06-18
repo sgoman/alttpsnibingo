@@ -591,7 +591,17 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// TODO "Open 5 Small Key Doors (Palace of Darkness)",
+// TODO "Open 5 Small Key Doors in PoD",
+bingoTiles.push({
+    content: "Open 5 Small Key Doors in PoD",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        console.log("current key counts PoD: " + data[0x382] + " SW: " + data[0x384] + " IP: " + data[0x385] + " MM: " + data[0x383] +
+            " Mails & Small Keys: " + data[0x424] + " current dungeon: " + data[0x36F])
+        return false
+    }
+})
 // TODO "Open 4 Small Key Doors (Skull Woods)",
 // TODO "Open 6 Small Key Doors (Ice Palace)",
 // TODO "Open 6 Small Key Doors (Misery Mire)",
@@ -707,8 +717,6 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// TODO "Perfect Archery Game",
-// TODO "3 Whirlpool Pairs",
 
 bingoTiles.push({
     content: "Spend 1000 rupees",
@@ -869,6 +877,20 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Gain Dark World Access",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const moonpearl = data[0x357] === 1
+        const hammer = data[0x34B] === 1
+        const powerGloves = data[0x354] === 1
+        const titansMitts = data[0x354] === 2
+        const agahnim = data[0x3C5] >= 3
+        return (moonpearl && (hammer && powerGloves || titansMitts || agahnim))
+    }
+})
+
+bingoTiles.push({
     content: "2 Pendants",
     tileId: null,
     isOpen: true,
@@ -944,7 +966,6 @@ bingoTiles.push({
 // TODO "Bomb open a cracked floor in any dungeon",
 // TODO "Bomb open a cracked door in any dungeon",
 // TODO "Move or destroy a wall in any dungeon",
-// TODO "Hit Crystal Switch with Frozen Enemy",
 // TODO "Read 3 Dark World Dungeon Telepathic Tiles",
 // TODO "2 Dungeon Blue Rupee Rooms",
 // TODO "Spawn a chest in 2 dungeons",
@@ -958,7 +979,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// TODO "Pull a Tounge Statue",
+// TODO "Pull a Tongue Statue",
 // TODO "Clear 2 Tile Rooms",
 // TODO "Defeat a Deadrock",
 // TODO "Defeat a Lynel",
@@ -1112,7 +1133,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME Will also trigger if the player fulfills both conditions one by one instead of at the same time
+        // FIXME Will also trigger if the player fulfills both conditions one by one instead doing it at the same time
         const linkX = data[0xF50022] & 0x02
         const linkY =  data[0xF50020] & 0x02
         console.log("Supertile data X:" + linkX + " Y:" + linkY )
@@ -1121,7 +1142,6 @@ bingoTiles.push({
 })
 // TODO "Pay the Hamburger Helper Hand",
 // TODO "Buy from 2 Shops in each World",
-// TODO "4 NPC/Object Followers",
 // TODO "Reveal a Hidden Cave under a rock in both Worlds",
 // TODO "Complete 1 Line of Y-Items"
 
@@ -1395,6 +1415,10 @@ bingoTiles.push({
     }
 })
 
+// TODO "4 NPC/Object Followers",
+// TODO "Hit Crystal Switch with Frozen Enemy",
+// TODO "Perfect Archery Game",
+// TODO "3 Whirlpool Pairs",
 // TODO "Finish in a Light World Dungeon Fairy Room",
 // TODO "Finish in a Dark Room",
 // TODO "Finish in a Rupee Floor Room",

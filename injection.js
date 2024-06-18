@@ -627,9 +627,9 @@ bingoTiles.push({
 })
 // TODO "Open Misery Mire",
 // TODO "Open Turtle Rock",
-// TODO "Death Mountain Lonely Island",
+
 bingoTiles.push({
-    content: "Death Mountain Lonely Island",
+    content: "Death Mountain Floating Island",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -780,7 +780,10 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return data[0x448] >= 8
+        // FIXME Wo heartpieces lesen?
+        //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+        //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
+        return data[0x429] >= 8
     }
 })
 
@@ -789,7 +792,10 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return data[0x448] >= 12
+        // FIXME Wo heartpieces lesen?
+        //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+        //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
+        return data[0x429] >= 12
     }
 })
 
@@ -798,8 +804,9 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME Vermutlich nur errechenbar über die Heart Pieces
-        return ((data[0x448] & 0xF0) >>> 4) >= 4
+        // 0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+        // http://alttp.mymm1.com/wiki/ALTTPR_SRAM_Map
+        return data[0x448] >= 4
     }
 })
 
@@ -808,8 +815,9 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME Vermutlich nur errechenbar über die Heart Pieces
-        return ((data[0x448] & 0xF0) >>> 4) >= 6
+        // 0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+        // http://alttp.mymm1.com/wiki/ALTTPR_SRAM_Map
+        return data[0x448] >= 6
     }
 })
 
@@ -849,7 +857,17 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "2 Pendants",
+
+bingoTiles.push({
+    content: "Enter the Dark World",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x3CA, 0x40]]
+        return hasAll(data, locations)
+    }
+})
+
 bingoTiles.push({
     content: "2 Pendants",
     tileId: null,
@@ -942,16 +960,6 @@ bingoTiles.push({
 })
 // TODO "Pull a Tounge Statue",
 // TODO "Clear 2 Tile Rooms",
-// TODO "Finish in a Light World Dungeon Fairy Room",
-// TODO "Finish in a Dark Room",
-// TODO "Finish in a Rupee Floor Room",
-// TODO "Finish in a Trap Room",
-// TODO "Finish in a Prison Cell",
-// TODO "Finish in a Room with a Bumper",
-// TODO "Finish in a Room with an Orange Warp",
-// TODO "Finish in a Room with a Firebar",
-// TODO "Finish in a Room with a Firesnake",
-// TODO "Finish as a Bunny",
 // TODO "Defeat a Deadrock",
 // TODO "Defeat a Lynel",
 // TODO "Defeat all 6 Freezors",
@@ -1018,11 +1026,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME already triggers with empty bottle
-        return hasAll(data, [[0x35C, 0x07]]) || hasAll(data, [[0x35C, 0x08]]) ||
-            hasAll(data, [[0x35D, 0x07]]) || hasAll(data, [[0x35D, 0x08]]) ||
-            hasAll(data, [[0x35E, 0x07]]) || hasAll(data, [[0x35E, 0x08]]) ||
-            hasAll(data, [[0x35F, 0x07]]) || hasAll(data, [[0x35F, 0x08]])
+        return (data[0x35C] > 6) || (data[0x35D] > 6) || (data[0x35E]  > 6) || (data[0x35F]  > 6)
     }
 })
 
@@ -1031,7 +1035,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return hasAll(data, [[0x35C, 0x06]]) || hasAll(data, [[0x35D, 0x06]]) || hasAll(data, [[0x35E, 0x06]]) || hasAll(data, [[0x35F, 0x06]])
+        return (data[0x35C] === 6) || (data[0x35D] === 6) || (data[0x35E]  === 6) || (data[0x35F]  === 6)
     }
 })
 
@@ -1040,11 +1044,10 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME already triggers with empty bottle
-        return hasAll(data, [[0x35C, 0x03]]) || hasAll(data, [[0x35C, 0x04]]) || hasAll(data, [[0x35C, 0x05]]) ||
-            hasAll(data, [[0x35D, 0x03]]) || hasAll(data, [[0x35D, 0x04]]) || hasAll(data, [[0x35D, 0x05]]) ||
-            hasAll(data, [[0x35E, 0x03]]) || hasAll(data, [[0x35E, 0x04]]) || hasAll(data, [[0x35E, 0x05]]) ||
-            hasAll(data, [[0x35F, 0x03]]) || hasAll(data, [[0x35F, 0x04]]) || hasAll(data, [[0x35F, 0x05]])
+        return (data[0x35C] > 2 && data[0x35C] < 6) ||
+            (data[0x35D] > 2 && data[0x35D] < 6) ||
+            (data[0x35E] > 2 && data[0x35E] < 6) ||
+            (data[0x35F] > 2 && data[0x35F] < 6)
     }
 })
 
@@ -1103,7 +1106,19 @@ bingoTiles.push({
         return data[0x359] > 1 && data[0x359] !== 0xFF
     }
 })
-// TODO "Visit the Catfish with a Follower",
+
+bingoTiles.push({
+    content: "Visit the Catfish with a Follower",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // FIXME Will also trigger if the player fulfills both conditions one by one instead of at the same time
+        const linkX = data[0xF50022] & 0x02
+        const linkY =  data[0xF50020] & 0x02
+        console.log("Supertile data X:" + linkX + " Y:" + linkY )
+        return (data[0x410] & 0x20) && (data[0x3CC] > 0)
+    }
+})
 // TODO "Pay the Hamburger Helper Hand",
 // TODO "Buy from 2 Shops in each World",
 // TODO "4 NPC/Object Followers",
@@ -1379,6 +1394,17 @@ bingoTiles.push({
         return hasAll(data, [[0x228, 0x10],[0x228, 0x20]])
     }
 })
+
+// TODO "Finish in a Light World Dungeon Fairy Room",
+// TODO "Finish in a Dark Room",
+// TODO "Finish in a Rupee Floor Room",
+// TODO "Finish in a Trap Room",
+// TODO "Finish in a Prison Cell",
+// TODO "Finish in a Room with a Bumper",
+// TODO "Finish in a Room with an Orange Warp",
+// TODO "Finish in a Room with a Firebar",
+// TODO "Finish in a Room with a Firesnake",
+// TODO "Finish as a Bunny",
 
 const evaluateAutotrackedCards = () => {
     for (const element of [...document.querySelectorAll('.autotracked')]) {

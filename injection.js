@@ -707,9 +707,8 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME triggers already at 100 rupees spent
-        console.log("Rupees Spent 0x42B: " + data[0x42B] + "0x42C: " + data[0x42C])
-        return (data[0x42B] << 8 + data[0x42C]) >= 1000
+        // 0x42B counts the spend rupees as an 8 bit int & increments 0x42C for each wrap around
+        return (data[0x42B] + 256 * data[0x42C]) >= 1000
     }
 })
 
@@ -718,9 +717,8 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME triggers already at 100 rupees spent
-        console.log("Rupees Spent 0x42B: " + data[0x42B] + "0x42C: " + data[0x42C])
-        return (data[0x42B] << 8 + data[0x42C]) >= 1500
+        // 0x42B counts the spend rupees as an 8 bit int & increments 0x42C for each wrap around
+        return (data[0x42B] + 256 * data[0x42C]) >= 1500
     }
 })
 

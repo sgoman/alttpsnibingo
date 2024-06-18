@@ -91,7 +91,7 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-//   "Defeat Vitreous",
+
 bingoTiles.push({
     content: "Defeat Vitreous",
     tileId: null,
@@ -102,7 +102,15 @@ bingoTiles.push({
     }
 })
 
-// TODO "Defeat Trinexx"
+bingoTiles.push({
+    content: "Defeat Trinexx",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x149, 0x08]]
+        return hasAll(data, locations)
+    }
+})
 // TODO "Die to Trinexx",
 
 // bingoTiles.push({
@@ -575,6 +583,7 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         // FIXME triggers already at 100 rupees spent
+        console.log("Rupees Spent 0x42B: " + data[0x42B] + "0x42C: " + data[0x42C])
         return (data[0x42B] << 8 + data[0x42C]) >= 1000
     }
 })
@@ -585,6 +594,7 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         // FIXME triggers already at 100 rupees spent
+        console.log("Rupees Spent 0x42B: " + data[0x42B] + "0x42C: " + data[0x42C])
         return (data[0x42B] << 8 + data[0x42C]) >= 1500
     }
 })
@@ -764,8 +774,8 @@ bingoTiles.push({
     check: function(data) {
         const bossprizes =
             (data[0x0B5] & 0x08 >>> 3) + (data[0x00D] & 0x08 >>> 2) + (data[0x053] & 0x08 >>> 1) +
-            (data[0x159 & 0x08 >>> 4]) + (data[0x1BD & 0x08 >>> 5]) + (data[0x121] & 0x08 >>> 6)
-            // FIXME Trinexx Adress is missing (data[?] & 0x08 >>> 7)
+            (data[0x159 & 0x08 >>> 4]) + (data[0x1BD & 0x08 >>> 5]) + (data[0x121] & 0x08 >>> 6) +
+            (data[0x149] & 0x08 >>> 7)
         return bitcount(bossprizes) === 2
     }
 })
@@ -777,8 +787,8 @@ bingoTiles.push({
     check: function(data) {
         const bossprizes =
             (data[0x0B5] & 0x08 >>> 3) + (data[0x00D] & 0x08 >>> 2) + (data[0x053] & 0x08 >>> 1) +
-            (data[0x159 & 0x08 ]) + (data[0x1BD & 0x08 << 1]) + (data[0x121] & 0x08 << 2)
-        // FIXME Trinexx Adress is missing (data[?] & 0x08 << 3)
+            (data[0x159 & 0x08 ]) + (data[0x1BD & 0x08 << 1]) + (data[0x121] & 0x08 << 2) +
+            (data[0x149] & 0x08 >>> 7)
         return bitcount(bossprizes) === 3
     }
 })

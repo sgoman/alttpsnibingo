@@ -142,6 +142,26 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Desert Palace Torch",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0xe7, 0x04]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
+    content: "Desert Palace Eastside",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x10a, 0x10], [0xea, 0x10]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
     content: "Tower of Hera Big Chest",
     tileId: null,
     isOpen: true,
@@ -150,6 +170,8 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
+
+// TODO Hera Basement
 
 bingoTiles.push({
     content: "Palace of Darkness Big Chest",
@@ -170,6 +192,26 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "PoD Helmasaur Hallway Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x34, 0x40]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
+    content: "PoD Dark Maze",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x32, 0x10], [0x32, 0x20]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
     content: "Swamp Palace Big Chest",
     tileId: null,
     isOpen: true,
@@ -182,6 +224,17 @@ bingoTiles.push({
         // [0xd, 0x08] SP Boss Prize
     }
 })
+
+// TODO Swamp Palace Westside
+// bingoTiles.push({
+//     content: "Swamp Palace Westside",
+//     tileId: null,
+//     isOpen: true,
+//     check: function(data) {
+//         const locations = [[?], [?]]
+//         return hasAll(data, locations)
+//     }
+// })
 
 bingoTiles.push({
     content: "Skull Woods Big Chest",
@@ -197,6 +250,26 @@ bingoTiles.push({
         // [0xae, 0x10] Behind the statue chest
         // [0xb2, 0x10] Bridge Chest
         // [0x53, 0x08] SW Boss Prize
+    }
+})
+
+bingoTiles.push({
+    content: "Skull Woods Bridge Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0xb2, 0x10]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
+    content: "Skull Woods Pinball Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0xd0, 0x10]]
+        return hasAll(data, locations)
     }
 })
 
@@ -219,6 +292,26 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Thieves' Town Attic Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0xca, 0x10]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
+    content: "Thieves' Town Maidens Cell Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x8a, 0x10]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
     content: "Ice Palace Big Chest",
     tileId: null,
     isOpen: true,
@@ -237,6 +330,16 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Ice Palace Ice-T Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x15c, 0x10]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
     content: "Misery Mire Big Chest",
     tileId: null,
     isOpen: true,
@@ -247,10 +350,20 @@ bingoTiles.push({
     // more adresses of MM chests:
     // [0x144, 0x10] bridge chest
     // [0x166, 0x10] spike chest
-    // [0x184, 0x10] gitter chest
+    // [0x184, 0x10] grid chest
     // [0x182, 0x10] ? Either cutscene chest or north of tile room chest
     // [0x1a2, 0x10] ? Either cutscene chest or north of tile room chest
     // [0x121, 0x08] MM Boss Prize
+})
+
+bingoTiles.push({
+    content: "Misery Mire Grid Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x184, 0x10]]
+        return hasAll(data, locations)
+    }
 })
 
 bingoTiles.push({
@@ -270,6 +383,16 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Turtle Rock Double Roller Room Chests",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x16e, 0x10], [0x16e, 0x20]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
     content: "Ganons Tower Big Chest",
     tileId: null,
     isOpen: true,
@@ -278,6 +401,8 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
+
+// TODO Eastern Palace Compass
 
 bingoTiles.push({
     content: "Desert Palace Compass",

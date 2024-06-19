@@ -111,18 +111,52 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// TODO "Die to Trinexx",
+bingoTiles.push({
+    content: "Die to Trinexx",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "Die to Trinexx",
+        for (let i = 0; i < 0x250; i = i+2) {
+            // TODO Exploration Code schreiben der alle Räume speichert & bei Änderungen der bist printed
+            console.log("room " + ((i >>> 0).toString(16)) + ": " + ((data[i] >>> 0).toString(2)) + " " + ((data[i+1] >>> 0).toString(2)))
+        }
+        return false
+    }
+})
 
-// bingoTiles.push({
-//     content: "Eastern Palace Big Chest",
-//     tileId: null,
-//     isOpen: true,
-//     check: function(data) {
-//         // FIXME Address of Big Chest? It's none of these: [0x172, 0x10], [0x154, 0x10], [0x150, 0x10], [0x152, 0x10], [0x170, 0x10]
-//         const locations = [[?]]
-//         return hasAll(data, locations)
-//     }
-// })
+bingoTiles.push({
+    content: "Eastern Palace Big Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // FIXME Address of Big Chest? It's none of these: [0x172, 0x10], [0x154, 0x10], [0x150, 0x10], [0x152, 0x10], [0x170, 0x10]
+        const locations = [[0x154, 0x10]]
+        return hasAll(data, locations)
+        // more adresses of Eastern Palace Chests:
+        //  [0x170, 0x10] EP Boss Prize
+    }
+})
+
+bingoTiles.push({
+    content: "Eastern Palace Canonball Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x172, 0x10]]
+        return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
+    content: "Eastern Palace Anti-Fairy Chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x152, 0x10]]
+        return hasAll(data, locations)
+    }
+})
 
 bingoTiles.push({
     content: "Desert Palace Big Chest",
@@ -168,10 +202,25 @@ bingoTiles.push({
     check: function(data) {
         const locations = [[0x4e, 0x10]]
         return hasAll(data, locations)
+        // more adresses of Tower of Hera Chests:
+        // [0x10f, 0x04] ?
+        // [0xee, 0x10] ?
+        // [0x10e, 0x10] ?
+        // [0x4e, 0x20] ?
+        // [0xf, 0x08] ToH Boss Prize
     }
 })
 
-// TODO Hera Basement
+bingoTiles.push({
+    content: "Tower of Hera Basement",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO Hera Basement
+        const locations = [[0x10e, 0x04]]
+        return hasAll(data, locations)
+    }
+})
 
 bingoTiles.push({
     content: "Palace of Darkness Big Chest",
@@ -221,20 +270,26 @@ bingoTiles.push({
         // more adresses of SP Chests:
         // [0x50, 0x10] Entrance Chest
         // [0x6e, 0x10] Chest behind bombable wall
+        // [0x6a, 0x10] ?
+        // [0x68, 0x10] ?
+        // [0x8c, 0x10] ?
+        // [0xec, 0x10] ?
+        // [0xec, 0x20] ?
+        // [0xcc, 0x10] ?
         // [0xd, 0x08] SP Boss Prize
     }
 })
 
 // TODO Swamp Palace Westside
-// bingoTiles.push({
-//     content: "Swamp Palace Westside",
-//     tileId: null,
-//     isOpen: true,
-//     check: function(data) {
-//         const locations = [[?], [?]]
-//         return hasAll(data, locations)
-//     }
-// })
+bingoTiles.push({
+    content: "Swamp Palace Westside",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x6a, 0x10]]
+        return hasAll(data, locations)
+    }
+})
 
 bingoTiles.push({
     content: "Skull Woods Big Chest",
@@ -339,6 +394,8 @@ bingoTiles.push({
     }
 })
 
+// TODO Icebreaker chest
+
 bingoTiles.push({
     content: "Misery Mire Big Chest",
     tileId: null,
@@ -401,6 +458,10 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
+
+// TODO Ganons Tower Torch
+// TODO Ganons Tower Rando Room
+// TODO Ganons Tower Ice Armos
 
 bingoTiles.push({
     content: "Eastern Palace Compass",
@@ -591,17 +652,17 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// TODO "Open 5 Small Key Doors in PoD",
-bingoTiles.push({
-    content: "Open 5 Small Key Doors in PoD",
-    tileId: null,
-    isOpen: true,
-    check: function(data) {
-        console.log("current key counts PoD: " + data[0x382] + " SW: " + data[0x384] + " IP: " + data[0x385] + " MM: " + data[0x383] +
-            " Mails & Small Keys: " + data[0x424] + " current dungeon: " + data[0x36F])
-        return false
-    }
-})
+// // TODO "Open 5 Small Key Doors in PoD",
+// bingoTiles.push({
+//     content: "Open 5 Small Key Doors in PoD",
+//     tileId: null,
+//     isOpen: true,
+//     check: function(data) {
+//         console.log("current key counts PoD: " + data[0x382] + " SW: " + data[0x384] + " IP: " + data[0x385] + " MM: " + data[0x383] +
+//             " Mails & Small Keys: " + data[0x424] + " current dungeon: " + data[0x36F])
+//         return false
+//     }
+// })
 // TODO "Open 4 Small Key Doors (Skull Woods)",
 // TODO "Open 6 Small Key Doors (Ice Palace)",
 // TODO "Open 6 Small Key Doors (Misery Mire)",
@@ -783,29 +844,29 @@ bingoTiles.push({
     }
 })
 
-bingoTiles.push({
-    content: "8 Heart Pieces",
-    tileId: null,
-    isOpen: true,
-    check: function(data) {
-        // FIXME Wo heartpieces lesen?
-        //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
-        //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
-        return data[0x429] >= 8
-    }
-})
-
-bingoTiles.push({
-    content: "12 Heart Pieces",
-    tileId: null,
-    isOpen: true,
-    check: function(data) {
-        // FIXME Wo heartpieces lesen?
-        //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
-        //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
-        return data[0x429] >= 12
-    }
-})
+// bingoTiles.push({
+//     content: "8 Heart Pieces",
+//     tileId: null,
+//     isOpen: true,
+//     check: function(data) {
+//         // FIXME Wo heartpieces lesen?
+//         //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+//         //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
+//         return data[0x429] >= 8
+//     }
+// })
+//
+// bingoTiles.push({
+//     content: "12 Heart Pieces",
+//     tileId: null,
+//     isOpen: true,
+//     check: function(data) {
+//         // FIXME Wo heartpieces lesen?
+//         //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+//         //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
+//         return data[0x429] >= 12
+//     }
+// })
 
 bingoTiles.push({
     content: "4 Heart Containers",
@@ -857,7 +918,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Master Sword Pedestal",
+    content: "Pull the Pedestal",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -865,6 +926,16 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
+
+// bingoTiles.push({
+//     content: "Read the Pedestal",
+//     tileId: null,
+//     isOpen: true,
+//     check: function(data) {
+//         // TODO Read the Pedestal
+//         return data[[0x34E, 0x01] & [?]]
+//     }
+// })
 
 bingoTiles.push({
     content: "Enter the Dark World",
@@ -885,7 +956,7 @@ bingoTiles.push({
         const hammer = data[0x34B] === 1
         const powerGloves = data[0x354] === 1
         const titansMitts = data[0x354] === 2
-        const agahnim = data[0x3C5] >= 3
+        const agahnim = data[0x3C5] === 3
         return (moonpearl && (hammer && powerGloves || titansMitts || agahnim))
     }
 })
@@ -906,6 +977,15 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         return bitcount(data[0x37a]) === 2
+    }
+})
+
+bingoTiles.push({
+    content: "Both red crystals",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (data[0x37a] & 0x01) && (data[0x37a] & 0x08)
     }
 })
 
@@ -963,12 +1043,6 @@ bingoTiles.push({
         return bitcount(bossprizes) === 3
     }
 })
-// TODO "Bomb open a cracked floor in any dungeon",
-// TODO "Bomb open a cracked door in any dungeon",
-// TODO "Move or destroy a wall in any dungeon",
-// TODO "Read 3 Dark World Dungeon Telepathic Tiles",
-// TODO "2 Dungeon Blue Rupee Rooms",
-// TODO "Spawn a chest in 2 dungeons",
 
 bingoTiles.push({
     content: "Collect Sahasrahla's Prize",
@@ -979,18 +1053,6 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// TODO "Pull a Tongue Statue",
-// TODO "Clear 2 Tile Rooms",
-// TODO "Defeat a Deadrock",
-// TODO "Defeat a Lynel",
-// TODO "Defeat all 6 Freezors",
-// TODO "Defeat a Red Eyegore and Red Mimic",
-// TODO "Burn a Floating Stalfos Skull",
-// TODO "Burn a Ball + Chain Trooper",
-// TODO "Freeze a Dodongo",
-// TODO "Freeze a Bomb Slug",
-// TODO "Stun a Pikit",
-// TODO "Stun a Turtle",
 
 bingoTiles.push({
     content: "Collect the Bow",
@@ -1140,10 +1202,6 @@ bingoTiles.push({
         return (data[0x410] & 0x20) && (data[0x3CC] > 0)
     }
 })
-// TODO "Pay the Hamburger Helper Hand",
-// TODO "Buy from 2 Shops in each World",
-// TODO "Reveal a Hidden Cave under a rock in both Worlds",
-// TODO "Complete 1 Line of Y-Items"
 
 bingoTiles.push({
     content: "Upgrade Tunic",
@@ -1227,7 +1285,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "The chest behind the Mario painting",
+    content: "C-Shaped House chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -1236,7 +1294,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Link's House",
+    content: "Link's House chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -1245,7 +1303,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Visit the Tavern",
+    content: "Tavern chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -1254,7 +1312,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Break into the Brewery",
+    content: "Brewery chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -1263,7 +1321,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Chicken Coop secret stash",
+    content: "Chicken house secret chest",
     tileId: null,
     isOpen: true,
     check: function(data) {
@@ -1414,11 +1472,34 @@ bingoTiles.push({
         return hasAll(data, [[0x228, 0x10],[0x228, 0x20]])
     }
 })
-
+// TODO "Bomb open a cracked floor in any dungeon",
+// TODO "Bomb open a cracked door in any dungeon",
+// TODO "Move or destroy a wall in any dungeon",
+// TODO "Read 3 Dark World Dungeon Telepathic Tiles",
+// TODO "2 Dungeon Blue Rupee Rooms",
+// TODO "Spawn a chest in 2 dungeons",
+// TODO "Pull a Tongue Statue",
+// TODO "Clear 2 Tile Rooms",
+// TODO "Defeat a Deadrock",
+// TODO "Defeat a Lynel",
+// TODO "Defeat all 6 Freezors",
+// TODO "Defeat a Red Eyegore and Red Mimic",
+// TODO "Burn a Floating Stalfos Skull",
+// TODO "Burn a Ball + Chain Trooper",
+// TODO "Freeze a Dodongo",
+// TODO "Freeze a Bomb Slug",
+// TODO "Stun a Pikit",
+// TODO "Stun a Turtle",
+// TODO "Pay the Hamburger Helper Hand",
+// TODO "Buy from 2 Shops in each World",
+// TODO "Reveal a Hidden Cave under a rock in both Worlds",
+// TODO "Complete 1 Line of Y-Items"
+// ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
 // TODO "4 NPC/Object Followers",
 // TODO "Hit Crystal Switch with Frozen Enemy",
 // TODO "Perfect Archery Game",
 // TODO "3 Whirlpool Pairs",
+// TODO "Pull all Fake Master Swords"
 // TODO "Finish in a Light World Dungeon Fairy Room",
 // TODO "Finish in a Dark Room",
 // TODO "Finish in a Rupee Floor Room",
@@ -1445,8 +1526,8 @@ const evaluateAutotrackedCards = () => {
     }
     // Which tiles on the current board are available to autotrack?
     for (const [id, task] of [...document.querySelectorAll('.text-container')].map(n => [n.parentNode.id, n.textContent])) {
-        const tiles = bingoTiles.filter(t => t.content == task)
-        if (tiles.length == 1) {
+        const tiles = bingoTiles.filter(t => t.content === task)
+        if (tiles.length === 1) {
             tiles[0].tileId = id
             tiles[0].isOpen = true
             const botNode = document.createElement("div")
@@ -1469,7 +1550,7 @@ let gameCompleted = false
 const socket = new WebSocket("ws://127.0.0.1:8080")
 socket.binaryType = 'arraybuffer'
 
-socket.onclose = e => {
+socket.onclose = () => {
     console.log("Connection closed!")
 }
 
@@ -1546,6 +1627,7 @@ const handleHelpCommand = ({node, hour, minute, secondsAndName, words}) => {
             case '!win':
             case 'win':
                 reply += 'The win command changes the winning conditions for this board. You can win by either getting at least a number of individual squares or lines of squares or by getting a special square. You have to provide any combination of winning conditions by stating the first letter and the number of squares. For example: "!win s20l4t13" will let a player win by either getting 20 squares or 4 lines or simply completing tile 13 in the center of the board.'
+                break
             default:
                 reply += `unknown command "${words[1]}". Please specify one of "lockout", "text".`
         }
@@ -1724,7 +1806,7 @@ const trackerReadMem = () => {
     })
 }
 
-socket.onopen = e => {
+socket.onopen = () => {
     console.log("Connected!")
     socket.send(JSON.stringify({Opcode: "DeviceList", Space: "SNES"}))
     socket.onmessage = ev => {

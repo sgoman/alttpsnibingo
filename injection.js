@@ -136,11 +136,13 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME Address of Big Chest? It's none of these: [0x172, 0x10], [0x154, 0x10], [0x150, 0x10], [0x152, 0x10], [0x170, 0x10]
-        const locations = [[0x154, 0x10]]
+        // FIXME Eastern Palace Big Chest
+        const locations = [[0x152, 0x10]]
         return hasAll(data, locations)
         // more adresses of Eastern Palace Chests:
-        //  [0x170, 0x10] EP Boss Prize
+        // [0x154, 0x10],
+        // [0x150, 0x10],
+        // [0x170, 0x10] EP Boss Defeat
     }
 })
 
@@ -209,10 +211,9 @@ bingoTiles.push({
         const locations = [[0x4e, 0x10]]
         return hasAll(data, locations)
         // more adresses of Tower of Hera Chests:
-        // [0x10f, 0x04] ?
-        // [0xee, 0x10] ?
-        // [0x10e, 0x10] ?
-        // [0x4e, 0x20] ?
+        // [0x10f, 0x04] ToH Basement Front Left
+        // [0xee, 0x10] ToH Lobby chest
+        // [0x4e, 0x20] ToH 4th Floor chest
         // [0xf, 0x08] ToH Boss Prize
     }
 })
@@ -222,8 +223,8 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO Hera Basement
-        const locations = [[0x10e, 0x04]]
+        // ToH Fire locked Basement chest
+        const locations = [[0x10e, 0x10]]
         return hasAll(data, locations)
     }
 })
@@ -1520,6 +1521,7 @@ bingoTiles.push({
 // TODO "Spawn a chest in 2 dungeons",
 // TODO "Pull a Tongue Statue",
 // TODO "Clear 2 Tile Rooms",
+// 0x10e, 0x04 // ToH Tileroom
 // TODO "Defeat a Deadrock",
 // TODO "Defeat a Lynel",
 // TODO "Defeat all 6 Freezors",

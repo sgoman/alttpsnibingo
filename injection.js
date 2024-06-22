@@ -1,5 +1,14 @@
 let trackerTimer = null
 const bingoTiles = []
+const roomList = []
+// At the beginning of the game (almost) all room registers are initialized as zero. We do the same to detect changes
+// in updateRoomData() and be able to react to them in future features
+for (let i = 0; i < 296; i++) {
+    roomList.push({
+        highbyte: 0,
+        lowbyte: 0
+    });
+}
 
 // All Bingo Cards in alttp_randomizer_generator.js, trying to implement as many as possible...
 
@@ -111,19 +120,16 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-bingoTiles.push({
-    content: "Die to Trinexx",
-    tileId: null,
-    isOpen: true,
-    check: function(data) {
-        // TODO "Die to Trinexx",
-        for (let i = 0; i < 0x250; i = i+2) {
-            // TODO Exploration Code schreiben der alle Räume speichert & bei Änderungen der bist printed
-            console.log("room " + ((i >>> 0).toString(16)) + ": " + ((data[i] >>> 0).toString(2)) + " " + ((data[i+1] >>> 0).toString(2)))
-        }
-        return false
-    }
-})
+
+// bingoTiles.push({
+//     content: "Die to Trinexx",
+//     tileId: null,
+//     isOpen: true,
+//     check: function(data) {
+//         // TODO "Die to Trinexx",
+//         return false
+//     }
+// })
 
 bingoTiles.push({
     content: "Eastern Palace Big Chest",
@@ -1195,7 +1201,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME Will also trigger if the player fulfills both conditions one by one instead doing it at the same time
+        // FIXME Will also trigger if the player fulfills both conditions one after another instead of doing them at the same time
         const linkX = data[0xF50022] & 0x02
         const linkY =  data[0xF50020] & 0x02
         console.log("Supertile data X:" + linkX + " Y:" + linkY )
@@ -1472,6 +1478,7 @@ bingoTiles.push({
         return hasAll(data, [[0x228, 0x10],[0x228, 0x20]])
     }
 })
+
 // TODO "Bomb open a cracked floor in any dungeon",
 // TODO "Bomb open a cracked door in any dungeon",
 // TODO "Move or destroy a wall in any dungeon",
@@ -1568,7 +1575,7 @@ const hasAll = (data, locations) => {
 function bitcount(byte) {
     let count = 0;
     while (byte > 0) {
-        count = count + 1;
+        count++;
         byte = byte & (byte - 1)
     }
     return count
@@ -1781,6 +1788,17 @@ const trackerStartTimer = () => {
     trackerTimer = setTimeout(trackerReadMem, 1000)
 }
 
+function updateRoomData(data) {
+    for (let i = 0; i < 0x250; i = i+2) {
+        let room = roomList[i / 2];
+        if (data[i] !== room.lowbyte || data[i+1] !== room.highbyte) {
+            console.log("room " + ((i >>> 0).toString(16)) + " has changed: " + ((data[i] >>> 0).toString(2)) + " " + ((data[i+1] >>> 0).toString(2)))
+            room.lowbyte = data[i]
+            room.highbyte = data[i+1]
+        }
+    }
+}
+
 const trackerReadMem = () => {
     const snesRead = (address, size, callback) => {
         socket.send(JSON.stringify({Opcode: "GetAddress", Space: "SNES", Operands: [address.toString(16), size.toString(16)]}))
@@ -1799,6 +1817,7 @@ const trackerReadMem = () => {
             snesRead(0xF5F280, 0x280, function(event3) {
                 const data = new Uint8Array([...new Uint8Array(event2.data), ...new Uint8Array(event3.data)])
                 processSave(data, bingoTiles)
+                updateRoomData(data)
                 // TODO: save previous data
                 trackerStartTimer()
             })

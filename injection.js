@@ -1479,9 +1479,42 @@ bingoTiles.push({
     }
 })
 
-// TODO "Bomb open a cracked floor in any dungeon",
-// TODO "Bomb open a cracked door in any dungeon",
-// TODO "Move or destroy a wall in any dungeon",
+bingoTiles.push({
+    content: "Bomb open a cracked floor in any dungeon",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO Bomb open a cracked floor in any dungeon
+        let podMainhall = data[0x75] & 0x80;
+        return podMainhall;
+    }
+})
+
+bingoTiles.push({
+    content: "Bomb open a cracked door in any dungeon",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "Bomb open a cracked door in any dungeon",
+        let podMainhallBalcony = data[0x55] & 0x20;
+        let podAntifairyBasement = data[0x97] & 0x20;
+        let podPotionGlitchHallway = data[0x97] & 0x40;
+        let podBigchestWall = data[0x35] & 0x10;
+        return podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway || podBigchestWall;
+    }
+})
+
+bingoTiles.push({
+    content: "Move or destroy a wall in any dungeon",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "Move or destroy a wall in any dungeon",
+        let podEyegoreStatue = data[0x36] & 0x80;
+        return podEyegoreStatue;
+    }
+})
+
 // TODO "Read 3 Dark World Dungeon Telepathic Tiles",
 // TODO "2 Dungeon Blue Rupee Rooms",
 // TODO "Spawn a chest in 2 dungeons",

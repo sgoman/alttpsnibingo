@@ -979,16 +979,6 @@ bingoTiles.push({
     }
 })
 
-// bingoTiles.push({
-//     content: "Read the Pedestal",
-//     tileId: null,
-//     isOpen: true,
-//     check: function(data) {
-//         // TODO Read the Pedestal
-//         return data[[0x34E, 0x01] & [?]]
-//     }
-// })
-
 bingoTiles.push({
     content: "Enter the Dark World",
     tileId: null,
@@ -1530,9 +1520,12 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO Bomb open a cracked floor in any dungeon
-        let podMainhall = data[0x75] & 0x80;
-        return podMainhall;
+        // TODO complete locations for "Bomb open a cracked floor in any dungeon"
+        const podMainhall = data[0x75] & 0x80;
+        const ttAtticFloor = 0x00;
+        const ipDropToStalfosKnights = 0x00;
+        const ipFreezorRoom = 0x00;
+        return podMainhall || ttAtticFloor || ipDropToStalfosKnights || ipFreezorRoom;
     }
 })
 
@@ -1542,14 +1535,17 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         // TODO complete locations for "Bomb open a cracked door in any dungeon",
-        let podMainhallBalcony = data[0x55] & 0x20;
-        let podAntifairyBasement = data[0x97] & 0x20;
-        let podPotionGlitchHallway = data[0x97] & 0x40;
-        let podBigchestWall = data[0x35] & 0x10;
-        let spBombableWall = data[0x71] & 0x80;
-        let backOfEscapeWall = 0x00;
-        return podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway || podBigchestWall || spBombableWall ||
-            backOfEscapeWall;
+        const backOfEscapeWall = data[0x23] & 0x40;
+        const podMainhallBalcony = data[0x55] & 0x20;
+        const podAntifairyBasement = data[0x97] & 0x20;
+        const podPotionGlitchHallway = data[0x97] & 0x40;
+        const podBigchestWall = data[0x35] & 0x10;
+        const spBombableWall = data[0x71] & 0x80;
+        const swBeforebigChest = 0x00;
+        const swBehindStatueRoomWall = 0x00;
+        const mmBlueRupeeRoomWall = 0x00;
+        return backOfEscapeWall || podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway ||
+            podBigchestWall || spBombableWall || swBeforebigChest || swBehindStatueRoomWall || mmBlueRupeeRoomWall;
     }
 })
 
@@ -1562,7 +1558,7 @@ bingoTiles.push({
         let podEyeStatue = data[0x36] & 0x80;
         let dpBossDoorWall = 0x00;
         let swAboveBigChest = 0x00;
-        return podEyegoreStatue || dpBossDoorWall || swAboveBigChest;
+        return podEyeStatue || dpBossDoorWall || swAboveBigChest;
     }
 })
 
@@ -1599,6 +1595,7 @@ bingoTiles.push({
 // TODO "Complete 1 Line of Y-Items"
 // TODO "Win the Triforce"
 // ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
+// TODO Read the Pedestal
 // TODO "4 NPC/Object Followers",
 // TODO "Hit Crystal Switch with Frozen Enemy",
 // TODO "Perfect Archery Game",

@@ -136,13 +136,12 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // FIXME Eastern Palace Big Chest
         const locations = [[0x152, 0x10]]
         return hasAll(data, locations)
         // more adresses of Eastern Palace Chests:
-        // [0x154, 0x10],
-        // [0x150, 0x10],
-        // [0x170, 0x10] EP Boss Defeat
+        // [0x154, 0x10] EP east side chest
+        // [0x150, 0x10] EP vertical bridge chest
+        // [0x191, 0x08] EP Boss Defeat
     }
 })
 
@@ -161,7 +160,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x152, 0x10]]
+        const locations = [[0x170, 0x10]]
         return hasAll(data, locations)
     }
 })
@@ -1536,6 +1535,7 @@ bingoTiles.push({
 // TODO "Buy from 2 Shops in each World",
 // TODO "Reveal a Hidden Cave under a rock in both Worlds",
 // TODO "Complete 1 Line of Y-Items"
+// TODO "Obtain the Triforce"
 // ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
 // TODO "4 NPC/Object Followers",
 // TODO "Hit Crystal Switch with Frozen Enemy",

@@ -10,6 +10,13 @@ for (let i = 0; i < 296; i++) {
     });
 }
 
+const overworldareas = [];
+for (let i = 0x280; i < 0x300; i++) {
+    overworldareas.push({
+        highbyte: 0
+    });
+}
+
 // All Bingo Cards in alttp_randomizer_generator.js, trying to implement as many as possible...
 
 bingoTiles.push({
@@ -481,7 +488,7 @@ bingoTiles.push({
 
 // TODO Ganons Tower Torch
 // TODO Ganons Tower Rando Room
-// TODO Ganons Tower Ice Armos
+// TODO Ganons Tower Ice Armos chests
 
 bingoTiles.push({
     content: "Eastern Palace Compass",
@@ -716,8 +723,33 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// TODO "Open Misery Mire",
-// TODO "Open Turtle Rock",
+
+bingoTiles.push({
+    content: "Open Misery Mire",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (0x2f0 & 0x20)
+    }
+})
+
+bingoTiles.push({
+    content: "Spawn Teleporter above Turtle Rock",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (0x287 & 0x20)
+    }
+})
+
+bingoTiles.push({
+    content: "Open Turtle Rock",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (0x2c7 & 0x20)
+    }
+})
 
 bingoTiles.push({
     content: "Death Mountain Floating Island",
@@ -1565,7 +1597,7 @@ bingoTiles.push({
 // TODO "Buy from 2 Shops in each World",
 // TODO "Reveal a Hidden Cave under a rock in both Worlds",
 // TODO "Complete 1 Line of Y-Items"
-// TODO "Obtain the Triforce"
+// TODO "Win the Triforce"
 // ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
 // TODO "4 NPC/Object Followers",
 // TODO "Hit Crystal Switch with Frozen Enemy",
@@ -1864,6 +1896,16 @@ function updateRoomData(data) {
     }
 }
 
+function updateOverworldData(data) {
+    for (let i = 0x280; i < 0x300; i++) {
+        let overworldarea = overworldareas[i - 0x280]
+        if (data[i] !== overworldarea.highbyte) {
+            console.log("overworld area " + ((i >>> 0).toString(16)) + " has changed: " + ((data[i] >>> 0).toString(2)))
+            overworldarea.highbyte = data[i];
+        }
+    }
+}
+
 const trackerReadMem = () => {
     const snesRead = (address, size, callback) => {
         socket.send(JSON.stringify({Opcode: "GetAddress", Space: "SNES", Operands: [address.toString(16), size.toString(16)]}))
@@ -1883,6 +1925,7 @@ const trackerReadMem = () => {
                 const data = new Uint8Array([...new Uint8Array(event2.data), ...new Uint8Array(event3.data)])
                 processSave(data, bingoTiles)
                 updateRoomData(data)
+                updateOverworldData(data)
                 // TODO: save previous data
                 trackerStartTimer()
             })

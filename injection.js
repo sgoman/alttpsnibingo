@@ -276,24 +276,38 @@ bingoTiles.push({
         // more adresses of SP Chests:
         // [0x50, 0x10] Entrance Chest
         // [0x6e, 0x10] Chest behind bombable wall
-        // [0x6a, 0x10] ?
-        // [0x68, 0x10] ?
-        // [0x8c, 0x10] ?
-        // [0xec, 0x10] ?
-        // [0xec, 0x20] ?
-        // [0xcc, 0x10] ?
+        // [0x70, 0x04] Pot in bombable wall room
+        // [0x6e, 0x04] Pot #2
+        // [0x6c, 0x04] SP Mainhall pot
+        // [0x8c, 0x10] SP south of mainhall spawned chest
+        // [0x6a, 0x04] SP floodable pot
+        // [0x68, 0x10] SP most leftside chest
+        // [0x6a, 0x10] SP leftside chest #2 (vanilla Big Key)
+        // [0xec, 0x10] SP Diver down room left chest
+        // [0xec, 0x20] SP Diver down room right chest
+        // [0xcc, 0x10] SP Waterfall room spawned chest
+        // [0x2c, 0x04] SP wave pool pot
+        // [0x2c, 0x40] SP wave pool small key door
         // [0xd, 0x08] SP Boss Prize
     }
 })
 
-// TODO Swamp Palace Westside
 bingoTiles.push({
-    content: "Swamp Palace Westside",
+    content: "Swamp Palace left side chests",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x6a, 0x10]]
+        const locations = [[0x68, 0x10], [0x6a, 0x10]]
         return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
+    content: "Open back of Swamp Palace",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (data[0x6c] & 0x40)
     }
 })
 
@@ -1495,12 +1509,15 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO "Bomb open a cracked door in any dungeon",
+        // TODO complete locations for "Bomb open a cracked door in any dungeon",
         let podMainhallBalcony = data[0x55] & 0x20;
         let podAntifairyBasement = data[0x97] & 0x20;
         let podPotionGlitchHallway = data[0x97] & 0x40;
         let podBigchestWall = data[0x35] & 0x10;
-        return podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway || podBigchestWall;
+        let spBombableWall = data[0x71] & 0x80;
+        let backOfEscapeWall = 0x00;
+        return podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway || podBigchestWall || spBombableWall ||
+            backOfEscapeWall;
     }
 })
 
@@ -1509,9 +1526,22 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO "Move or destroy a wall in any dungeon",
-        let podEyegoreStatue = data[0x36] & 0x80;
-        return podEyegoreStatue;
+        // TODO complete locations for "Move or destroy a wall in any dungeon",
+        let podEyeStatue = data[0x36] & 0x80;
+        let dpBossDoorWall = 0x00;
+        let swAboveBigChest = 0x00;
+        return podEyegoreStatue || dpBossDoorWall || swAboveBigChest;
+    }
+})
+
+bingoTiles.push({
+    content: "Enter sanctuary from secret passage",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // this check is actually already true when link has seen the room right behind the altar. Unfortunately there
+        // is no room state data for the opened altar, instead both rooms reset themselves on re-entry
+        return (data[0x04] & 0x0F);
     }
 })
 

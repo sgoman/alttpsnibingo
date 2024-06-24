@@ -274,12 +274,17 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
-    content: "Open 5 Small Key Doors in PoD",
+    content: "Open 6 Small Key Doors in PoD",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO "Open 5 Small Key Doors in PoD"
-        return false
+        const lobbyDoor = data[0x95] & 0x20;
+        const doorToLobbyIsland = data[0x15] & 0x80;
+        const doorToFallingBridge = data[0x55] & 0x20;
+        const doorToDarkMaze = data[0x35] & 0x40;
+        const doorToHelmasaurHallway = data[0x35] & 0x80;
+        const doorToBoss = data[0x17] & 0x20;
+        return lobbyDoor && doorToLobbyIsland && doorToFallingBridge && doorToDarkMaze && doorToHelmasaurHallway && doorToBoss;
     }
 })
 
@@ -387,6 +392,15 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         return data[0x2c0] & 0x20;
+    }
+})
+
+bingoTiles.push({
+    content: "Open Thieves' Town Entrance",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x2d8] & 0x20;
     }
 })
 
@@ -715,18 +729,22 @@ bingoTiles.push({
     }
 })
 
-// TODO "Open 6 Small Key Doors (Ice Palace)",
-// TODO "Open 6 Small Key Doors (Misery Mire)",
-
 bingoTiles.push({
-    content: "Pull a Tongue Statue",
+    content: "Open 6 Small Key Doors in Ice Palace",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO "Pull a Tongue Statue"
-        return
+        const entranceDoor = data[0x1d] & 0x80;
+        const movingFloorDoor = data[0x7d] & 0x40;
+        const crossingDoor = data[0xbf] & 0x80;
+        const bottomOfBigIceRoom = data[0x11d] & 0x80;
+        const doorToBoss = data[0x13d] & 0x80;
+        // const bigkeyDoor = data[0x13d] & 0x40;
+        const doorNearBoss = data[0x17d] & 0x40;
+        return entranceDoor && movingFloorDoor && crossingDoor && bottomOfBigIceRoom && doorToBoss && doorNearBoss;
     }
 })
+// TODO "Open 6 Small Key Doors (Misery Mire)",
 
 bingoTiles.push({
     content: "Open Purple Chest",
@@ -1565,8 +1583,8 @@ bingoTiles.push({
         // TODO complete locations for "Bomb open a cracked floor in any dungeon"
         const podMainhall = data[0x75] & 0x80;
         const ttAtticFloor = 0x00;
-        const ipDropToStalfosKnights = 0x00;
-        const ipFreezorRoom = 0x00;
+        const ipDropToStalfosKnights = 0x00; // not persistent in room data, find another address
+        const ipFreezorRoom = 0x00; // not persistent in room data, find another address
         return podMainhall || ttAtticFloor || ipDropToStalfosKnights || ipFreezorRoom;
     }
 })
@@ -1584,10 +1602,12 @@ bingoTiles.push({
         const podBigchestWall = data[0x35] & 0x10;
         const spBombableWall = data[0x71] & 0x80;
         const swBeforebigChest = data[0xb1] & 0x10;
-        const swBehindStatueRoomWall = 0x00;
+        const swBehindStatueRoomWall = data[0xaf] & 0x80;
         const mmBlueRupeeRoomWall = 0x00;
+        const gtToRandoRoomWall = 0x00;
         return backOfEscapeWall || podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway ||
-            podBigchestWall || spBombableWall || swBeforebigChest || swBehindStatueRoomWall || mmBlueRupeeRoomWall;
+            podBigchestWall || spBombableWall || swBeforebigChest || swBehindStatueRoomWall || mmBlueRupeeRoomWall ||
+            gtToRandoRoomWall;
     }
 })
 
@@ -1616,11 +1636,44 @@ bingoTiles.push({
     }
 })
 
+bingoTiles.push({
+    content: "2 Dungeon Blue Rupee Rooms",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "2 Dungeon Blue Rupee Rooms"
+        const podBasement = data[0xd5] & 0x01;
+        const epRupeeRoom = 0x00;
+        const mmRupeeRoom1 = 0x00;
+        const mmRupeeRoom2 = 0x00;
+        const hoolahanRoom = 0x00;
+        return (podBasement || epRupeeRoom || mmRupeeRoom1 || mmRupeeRoom2 || hoolahanRoom);
+    }
+})
+
+bingoTiles.push({
+    content: "Clear 2 Tile Rooms",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "Clear 2 Tile Rooms",
+        const tohTileroom = data[0x10e] & 0x04;
+        const dpTileroom1 = 0x00;
+        const dpTileroom2 = 0x00;
+        const mmTileroom = 0x00;
+        const gtTileroom = 0x00;
+        return tohTileroom && dpTileroom1 && dpTileroom2 && mmTileroom && gtTileroom;
+    }
+})
 // TODO "Read 3 Dark World Dungeon Telepathic Tiles",
-// TODO "2 Dungeon Blue Rupee Rooms",
 // TODO "Spawn a chest in 2 dungeons",
-// TODO "Clear 2 Tile Rooms",
-// 0x10e, 0x04 // ToH Tileroom
+// TODO "Pay the Hamburger Helper Hand",
+// TODO "Buy from 2 Shops in each World",
+// TODO "Reveal a Hidden Cave under a rock in both Worlds",
+// TODO "Complete 1 Line of Y-Items"
+// TODO "Win the Triforce"
+// ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
+// TODO "Pull a Tongue Statue"
 // TODO "Defeat a Deadrock",
 // TODO "Defeat a Lynel",
 // TODO "Defeat all 6 Freezors",
@@ -1631,12 +1684,6 @@ bingoTiles.push({
 // TODO "Freeze a Bomb Slug",
 // TODO "Stun a Pikit",
 // TODO "Stun a Turtle",
-// TODO "Pay the Hamburger Helper Hand",
-// TODO "Buy from 2 Shops in each World",
-// TODO "Reveal a Hidden Cave under a rock in both Worlds",
-// TODO "Complete 1 Line of Y-Items"
-// TODO "Win the Triforce"
-// ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
 // TODO Read the Pedestal
 // TODO "4 NPC/Object Followers",
 // TODO "Hit Crystal Switch with Frozen Enemy",

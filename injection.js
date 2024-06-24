@@ -545,6 +545,15 @@ bingoTiles.push({
 // TODO Ganons Tower Ice Armos chests
 
 bingoTiles.push({
+    content: "Open Ganons Tower",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (0x2c3 & 0x20)
+    }
+})
+
+bingoTiles.push({
     content: "Eastern Palace Compass",
     tileId: null,
     isOpen: true,

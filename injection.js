@@ -551,6 +551,13 @@ bingoTiles.push({
         // [0xfa, 0x20] bombable wall to rando room
         // [0xf8, 0x10],[0xf8, 0x20],[0xf8, 0x40],[0xf8, 0x80] rando room chests
         // [0x118, 0x80] Bobs chest
+        // [0x11a, 0x10] tile room chest
+        // [0x11b, 0x40] tile room small key door
+        // [0x13a, 0x10] GT right side chest #1
+        // [0x13a, 0x20] GT right side chest #2
+        // [0x13a, 0x40] GT right side chest #3
+        // [0x13a, 0x80] GT right side chest #4
+        // [0xf6, 0x04] GT right side last pot
     }
 })
 
@@ -1710,12 +1717,12 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         // TODO "Clear 2 Tile Rooms",
-        const tohTileroom = data[0x10e] & 0x04;
+        const tohBasementTileroom = data[0x10e] & 0x04;
         const dpTileroom1 = 0x00;
         const dpTileroom2 = 0x00;
         const mmTileroom = 0x00;
-        const gtTileroom = 0x00;
-        return tohTileroom && dpTileroom1 && dpTileroom2 && mmTileroom && gtTileroom;
+        const gtTileroom = data[0x11a] & 0x10;
+        return tohBasementTileroom && dpTileroom1 && dpTileroom2 && mmTileroom && gtTileroom;
     }
 })
 // TODO "Read 3 Dark World Dungeon Telepathic Tiles",

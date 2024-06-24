@@ -535,14 +535,53 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const locations = [[0x7a, 0x40]]
+        const locations = [[0x118, 0x20]]
+        return hasAll(data, locations)
+        // more GT room data:
+        // [0x118, 0x20] right side first room left chest
+        // [0x118, 0x40] right side first room right chest
+        // [0xf6, 0x40] left side red stalfos room bottom left chest
+        // [0xf6, 0x10] left side red stalfos room top left chest
+        // [0xf6, 0x20] left side red stalfos room top right chest
+        // [0xf6, 0x80] left side red stalfos room bottom right chest
+        // [0x117, 0x40] small key door to rotating double firebar room
+        // [0x137, 0x80] small key door to crystal switch, spikes and teleporter room
+        // [0xfa, 0x10] 4 firesnakes room chest
+        // [0xfb, 0x40] 4 firesnakes door
+        // [0xfa, 0x20] bombable wall to rando room
+        // [0xf8, 0x10],[0xf8, 0x20],[0xf8, 0x40],[0xf8, 0x80] rando room chests
+        // [0x118, 0x80] Bobs chest
+    }
+})
+
+bingoTiles.push({
+    content: "Ganons Tower Torch",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (0x119 & 0x04)
+    }
+})
+
+bingoTiles.push({
+    content: "Ganons Tower Rando Room",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0xf8, 0x10],[0xf8, 0x20],[0xf8, 0x40],[0xf8, 0x80]]
         return hasAll(data, locations)
     }
 })
 
-// TODO Ganons Tower Torch
-// TODO Ganons Tower Rando Room
-// TODO Ganons Tower Ice Armos chests
+bingoTiles.push({
+    content: "Ganons Tower Ice Armos chests",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const locations = [[0x38, 0x10],[0x38, 0x20],[0x38, 0x40],[0x38, 0x80]]
+        return hasAll(data, locations)
+    }
+})
 
 bingoTiles.push({
     content: "Open Ganons Tower",
@@ -1618,10 +1657,11 @@ bingoTiles.push({
         const swBeforebigChest = data[0xb1] & 0x10;
         const swBehindStatueRoomWall = data[0xaf] & 0x80;
         const mmBlueRupeeRoomWall = 0x00;
-        const gtToRandoRoomWall = 0x00;
+        const gtToRandoRoomWall = data[0xfa] & 0x20;
+        const gtLeftofIceArmosFaerieWall = data[0x39] & 0x20;
         return backOfEscapeWall || podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway ||
             podBigchestWall || spBombableWall || swBeforebigChest || swBehindStatueRoomWall || mmBlueRupeeRoomWall ||
-            gtToRandoRoomWall;
+            gtToRandoRoomWall || gtLeftofIceArmosFaerieWall;
     }
 })
 
@@ -1630,11 +1670,10 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO complete locations for "Move or destroy a wall in any dungeon",
         const podEyeStatue = data[0x36] & 0x80;
         const dpBossDoorWall = data[0x87] & 0x80;
         const swAboveBigChest = data[0xb1] & 0x80;
-        const gtRandoRoom = 0x00;
+        const gtRandoRoom = data[0xf9] & 0x40 || data[0xf9] & 0x80;
         return podEyeStatue || dpBossDoorWall || swAboveBigChest || gtRandoRoom;
     }
 })

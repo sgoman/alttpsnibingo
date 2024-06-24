@@ -453,9 +453,8 @@ bingoTiles.push({
         // [0x5c, 0x10] Pengator Ice Floor chest
         // [0xfc, 0x10] Freezor Room Chest above big chest
         // [0x15c, 0x10] Ice-T room chest
-        // [0xbe, 0x10] ? Either spike room or Ice-H room chest
-        // [0x7e, 0x10] ? Icebreaker chest
-        // [0x3e, 0x10] ? Also Icebreaker chest??!
+        // [0xbe, 0x10] spike room chest
+        // [0x3e, 0x10] IP Ice-H Room chest
         // [0x1bd, 0x08] IP Boss Prize
     }
 })
@@ -470,7 +469,14 @@ bingoTiles.push({
     }
 })
 
-// TODO Icebreaker chest
+bingoTiles.push({
+    content: "Ice Palace Icebreaker chest",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return (data[0x3e] & 0x10);
+    }
+})
 
 bingoTiles.push({
     content: "Misery Mire Big Chest",
@@ -511,7 +517,6 @@ bingoTiles.push({
     // [0x1ac, 0x10] Entrance bottom left chest
     // [0x16e, 0x10] Double roller room chest left
     // [0x16e, 0x20] Double roller room chest right
-
     // [0x121, 0x08] TR Boss Prize
 })
 
@@ -790,7 +795,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return (0x287 & 0x20)
+        return (0x287 & 0x20);
     }
 })
 
@@ -799,7 +804,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return (0x2c7 & 0x20)
+        return (0x2c7 & 0x20);
     }
 })
 
@@ -1087,7 +1092,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        return (data[0x37a] & 0x01) && (data[0x37a] & 0x08)
+        return (data[0x37a] & 0x01) && (data[0x37a] & 0x08);
     }
 })
 
@@ -1298,9 +1303,9 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         // FIXME Will also trigger if the player fulfills both conditions one after another instead of doing them at the same time
-        const linkX = data[0xF50022] & 0x02
-        const linkY =  data[0xF50020] & 0x02
-        console.log("Supertile data X:" + linkX + " Y:" + linkY )
+        // const linkX = data[0xF50022] & 0x02
+        // const linkY =  data[0xF50020] & 0x02
+        // console.log("Supertile data X:" + linkX + " Y:" + linkY )
         return (data[0x410] & 0x20) && (data[0x3CC] > 0)
     }
 })
@@ -1618,7 +1623,7 @@ bingoTiles.push({
     check: function(data) {
         // TODO complete locations for "Move or destroy a wall in any dungeon",
         const podEyeStatue = data[0x36] & 0x80;
-        const dpBossDoorWall = 0x00;
+        const dpBossDoorWall = data[0x87] & 0x80;
         const swAboveBigChest = data[0xb1] & 0x80;
         const gtRandoRoom = 0x00;
         return podEyeStatue || dpBossDoorWall || swAboveBigChest || gtRandoRoom;

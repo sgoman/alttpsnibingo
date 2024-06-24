@@ -274,6 +274,16 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Open 5 Small Key Doors in PoD",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "Open 5 Small Key Doors in PoD"
+        return false
+    }
+})
+
+bingoTiles.push({
     content: "Swamp Palace Big Chest",
     tileId: null,
     isOpen: true,
@@ -326,12 +336,14 @@ bingoTiles.push({
         const locations = [[0xb0, 0x10]]
         return hasAll(data, locations)
         // more addresses of SW chests:
+        // [0xb0, 0x20] Star switches chest
         // [0xae, 0x20] Trapped Gibdos chest
         // [0xce, 0x10] Holes and firebar room chest
         // [0xd0, 0x10] Pinballroom chest
         // [0xae, 0x10] Behind the statue chest
         // [0xb2, 0x10] Bridge Chest
         // [0x53, 0x08] SW Boss Prize
+        // [0x93, 0x80] Curtain opened
     }
 })
 
@@ -352,6 +364,29 @@ bingoTiles.push({
     check: function(data) {
         const locations = [[0xd0, 0x10]]
         return hasAll(data, locations)
+    }
+})
+
+bingoTiles.push({
+    content: "Open 5 Small Key Doors in Skull Woods",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const bigChestToGibdosDoor = data[0xb1] & 0x40;
+        const pinballDoor = data[0xd1] & 0x40;
+        const deadEndDoor = data[0xad] & 0x80;
+        const bridgeDoor = data[0xb3] & 0x80;
+        const bossDoor = data[0xb3] & 0x40;
+        return bigChestToGibdosDoor && pinballDoor && deadEndDoor && bridgeDoor && bossDoor;
+    }
+})
+
+bingoTiles.push({
+    content: "Open back of Skull Woods",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        return data[0x2c0] & 0x20;
     }
 })
 
@@ -679,20 +714,19 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
-// // TODO "Open 5 Small Key Doors in PoD",
-// bingoTiles.push({
-//     content: "Open 5 Small Key Doors in PoD",
-//     tileId: null,
-//     isOpen: true,
-//     check: function(data) {
-//         console.log("current key counts PoD: " + data[0x382] + " SW: " + data[0x384] + " IP: " + data[0x385] + " MM: " + data[0x383] +
-//             " Mails & Small Keys: " + data[0x424] + " current dungeon: " + data[0x36F])
-//         return false
-//     }
-// })
-// TODO "Open 4 Small Key Doors (Skull Woods)",
+
 // TODO "Open 6 Small Key Doors (Ice Palace)",
 // TODO "Open 6 Small Key Doors (Misery Mire)",
+
+bingoTiles.push({
+    content: "Pull a Tongue Statue",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "Pull a Tongue Statue"
+        return
+    }
+})
 
 bingoTiles.push({
     content: "Open Purple Chest",
@@ -1549,7 +1583,7 @@ bingoTiles.push({
         const podPotionGlitchHallway = data[0x97] & 0x40;
         const podBigchestWall = data[0x35] & 0x10;
         const spBombableWall = data[0x71] & 0x80;
-        const swBeforebigChest = 0x00;
+        const swBeforebigChest = data[0xb1] & 0x10;
         const swBehindStatueRoomWall = 0x00;
         const mmBlueRupeeRoomWall = 0x00;
         return backOfEscapeWall || podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway ||
@@ -1563,10 +1597,11 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         // TODO complete locations for "Move or destroy a wall in any dungeon",
-        let podEyeStatue = data[0x36] & 0x80;
-        let dpBossDoorWall = 0x00;
-        let swAboveBigChest = 0x00;
-        return podEyeStatue || dpBossDoorWall || swAboveBigChest;
+        const podEyeStatue = data[0x36] & 0x80;
+        const dpBossDoorWall = 0x00;
+        const swAboveBigChest = data[0xb1] & 0x80;
+        const gtRandoRoom = 0x00;
+        return podEyeStatue || dpBossDoorWall || swAboveBigChest || gtRandoRoom;
     }
 })
 
@@ -1584,7 +1619,6 @@ bingoTiles.push({
 // TODO "Read 3 Dark World Dungeon Telepathic Tiles",
 // TODO "2 Dungeon Blue Rupee Rooms",
 // TODO "Spawn a chest in 2 dungeons",
-// TODO "Pull a Tongue Statue",
 // TODO "Clear 2 Tile Rooms",
 // 0x10e, 0x04 // ToH Tileroom
 // TODO "Defeat a Deadrock",

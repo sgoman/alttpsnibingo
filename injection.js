@@ -896,29 +896,37 @@ bingoTiles.push({
     }
 })
 
-// bingoTiles.push({
-//     content: "8 Heart Pieces",
-//     tileId: null,
-//     isOpen: true,
-//     check: function(data) {
-//         // FIXME Wo heartpieces lesen?
-//         //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
-//         //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
-//         return data[0x429] >= 8
-//     }
-// })
-//
-// bingoTiles.push({
-//     content: "12 Heart Pieces",
-//     tileId: null,
-//     isOpen: true,
-//     check: function(data) {
-//         // FIXME Wo heartpieces lesen?
-//         //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
-//         //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces
-//         return data[0x429] >= 12
-//     }
-// })
+bingoTiles.push({
+    content: "8 Heart Pieces",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+        //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces erkennbar
+        // http://alttp.mymm1.com/wiki/ALTTPR_SRAM_Map
+        const maxHealthInHearts = data[0x36C] / 8;
+        const startingHealthInHearts = 3; // Wird kaputt gehen wenn der Romhack eine abweichende startingHealth zulässt
+        const heartcontainerCount = data[0x448];
+        const heartpiecesCount = (maxHealthInHearts - startingHealthInHearts - heartcontainerCount) * 4
+        return heartpiecesCount >= 8;
+    }
+})
+
+bingoTiles.push({
+    content: "12 Heart Pieces",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        //  0x448 falsch dokumentiert, enthält die anzahl der container statt heartpieces
+        //  data[0x429] enthält nur die anzahl gesammelter pendants, keine relation zu heart pieces erkennbar
+        // http://alttp.mymm1.com/wiki/ALTTPR_SRAM_Map
+        const maxHealthInHearts = data[0x36C] / 8;
+        const startingHealthInHearts = 3; // Wird kaputt gehen wenn der Romhack eine abweichende startingHealth zulässt
+        const heartcontainerCount = data[0x448];
+        const heartpiecesCount = (maxHealthInHearts - startingHealthInHearts - heartcontainerCount) * 4
+        return heartpiecesCount >= 12;
+    }
+})
 
 bingoTiles.push({
     content: "4 Heart Containers",

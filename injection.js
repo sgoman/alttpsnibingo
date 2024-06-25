@@ -1651,6 +1651,19 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Complete 1 Line of Y-Items",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const firstrow = data[0x340] > 0 && data[0x341] > 0 && data[0x342] > 0 && data[0x343] > 0 && data[0x344] > 0;
+        const secondRow = data[0x345] > 0 && data[0x346] > 0 && data[0x347] > 0 && data[0x348] > 0 && data[0x349] > 0;
+        const thirdRow = data[0x34A] > 0 && data[0x34B] > 0 && data[0x34C] > 0 && data[0x34D] > 0 && data[0x34E] > 0;
+        const fourthRow = data[0x34F] > 0 && data[0x350] > 0 && data[0x351] > 0 && data[0x352] > 0 && data[0x353] > 0;
+        return firstrow || secondRow || thirdRow || fourthRow
+    }
+})
+
+bingoTiles.push({
     content: "Bomb open a cracked floor in any dungeon",
     tileId: null,
     isOpen: true,
@@ -1713,6 +1726,20 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+    content: "Reveal a Hidden Cave under a rock in both Worlds",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // TODO "Reveal a Hidden Cave under a rock in both Worlds"
+        const lakeHyliaIceRodArea = 0x00;
+        const desertArea = 0x00;
+        const bonkRocks = 0x00;
+        const darkHyliaLakeIceRodArea = data[0x2f7] & 0x02;
+        return (lakeHyliaIceRodArea || desertArea || bonkRocks) && darkHyliaLakeIceRodArea;
+    }
+})
+
+bingoTiles.push({
     content: "2 Dungeon Blue Rupee Rooms",
     tileId: null,
     isOpen: true,
@@ -1740,12 +1767,21 @@ bingoTiles.push({
         return tohBasementTileroom && dpTileroom1 && dpTileroom2 && mmTileroom && gtTileroom;
     }
 })
+
+bingoTiles.push({
+    content: "Pay the Hamburger Helper Hand",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        // this actually only checks if the hamburger hand cave has been seen by link. There is no persistant room data
+        // about the hand being paid or not
+        return data[0x21c] & 0x05;
+    }
+})
+
 // TODO "Read 3 Dark World Dungeon Telepathic Tiles",
 // TODO "Spawn a chest in 2 dungeons",
-// TODO "Pay the Hamburger Helper Hand",
 // TODO "Buy from 2 Shops in each World",
-// TODO "Reveal a Hidden Cave under a rock in both Worlds",
-// TODO "Complete 1 Line of Y-Items"
 // TODO "Win the Triforce"
 // ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
 // TODO "Pull a Tongue Statue" not persistent in room data
@@ -1760,11 +1796,11 @@ bingoTiles.push({
 // TODO "Stun a Pikit",
 // TODO "Stun a Turtle",
 // TODO Read the Pedestal
+// TODO Pull all Fake Master Swords
 // TODO "4 NPC/Object Followers",
 // TODO "Hit Crystal Switch with Frozen Enemy",
 // TODO "Perfect Archery Game",
 // TODO "3 Whirlpool Pairs",
-// TODO "Pull all Fake Master Swords"
 // TODO "Finish in a Light World Dungeon Fairy Room",
 // TODO "Finish in a Dark Room",
 // TODO "Finish in a Rupee Floor Room",

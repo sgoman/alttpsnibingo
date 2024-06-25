@@ -486,13 +486,13 @@ bingoTiles.push({
         const locations = [[0x186, 0x10]]
         return hasAll(data, locations)
     }
-    // more adresses of MM chests:
+    // more adresses of MM:
     // [0x144, 0x10] bridge chest
     // [0x166, 0x10] spike chest
     // [0x184, 0x10] grid chest
-    // [0x182, 0x10] ? Either cutscene chest or north of tile room chest
-    // [0x1a2, 0x10] ? Either cutscene chest or north of tile room chest
-    // [0x121, 0x08] MM Boss Prize
+    // [0x182, 0x10] north of tile room chest
+    // [0x1a2, 0x10] cutscene chest
+    // [0x121, 0x08] MM Boss defeated
 })
 
 bingoTiles.push({
@@ -804,7 +804,22 @@ bingoTiles.push({
         return entranceDoor && movingFloorDoor && crossingDoor && bottomOfBigIceRoom && doorToBoss && doorNearBoss;
     }
 })
-// TODO "Open 6 Small Key Doors (Misery Mire)",
+bingoTiles.push({
+    content: "Open 6 Small Key Doors in Misery Mire",
+    tileId: null,
+    isOpen: true,
+    check: function(data) {
+        const mainhallLeftDoor = data[0x185] & 0x40;
+        const doorToTileroom = data[0x183] & 0xC0;
+        const mainhallRightDoor = data[0x185] & 0x80;
+        const doorToBoss = data[0x167] & 0x80;
+        const uselessDoor = data[0x143] & 0x80;
+        // const bigkeyDoor = data[0x165] & 0x80;
+        const doorToBlueRupeeRoom1 = data[0x127] & 0x40;
+        // const bigKeyBossDoor = data[0x141] & 0x80;
+        return mainhallLeftDoor && doorToTileroom && mainhallRightDoor && doorToBoss && uselessDoor && doorToBlueRupeeRoom1;
+    }
+})
 
 bingoTiles.push({
     content: "Open Purple Chest",
@@ -1654,7 +1669,6 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO complete locations for "Bomb open a cracked door in any dungeon",
         const backOfEscapeWall = data[0x23] & 0x40;
         const podMainhallBalcony = data[0x55] & 0x20;
         const podAntifairyBasement = data[0x97] & 0x20;
@@ -1663,12 +1677,13 @@ bingoTiles.push({
         const spBombableWall = data[0x71] & 0x80;
         const swBeforebigChest = data[0xb1] & 0x10;
         const swBehindStatueRoomWall = data[0xaf] & 0x80;
-        const mmBlueRupeeRoomWall = 0x00;
+        const mmBlueRupeeRoomWall = data[0x125] & 0x80;
+        const mmCrystalSwitchWall = data[0x125] & 0x40;
         const gtToRandoRoomWall = data[0xfa] & 0x20;
         const gtLeftofIceArmosFaerieWall = data[0x39] & 0x20;
         return backOfEscapeWall || podMainhallBalcony || podAntifairyBasement || podPotionGlitchHallway ||
             podBigchestWall || spBombableWall || swBeforebigChest || swBehindStatueRoomWall || mmBlueRupeeRoomWall ||
-            gtToRandoRoomWall || gtLeftofIceArmosFaerieWall;
+            mmCrystalSwitchWall || gtToRandoRoomWall || gtLeftofIceArmosFaerieWall;
     }
 })
 
@@ -1680,8 +1695,9 @@ bingoTiles.push({
         const podEyeStatue = data[0x36] & 0x80;
         const dpBossDoorWall = data[0x87] & 0x80;
         const swAboveBigChest = data[0xb1] & 0x80;
-        const gtRandoRoom = data[0xf9] & 0x40 || data[0xf9] & 0x80;
-        return podEyeStatue || dpBossDoorWall || swAboveBigChest || gtRandoRoom;
+        const mmCutsceneRoom = data[0x12f] & 0x01;
+        const gtRandoRoom = (data[0xf9] & 0x40) || (data[0xf9] & 0x80);
+        return podEyeStatue || dpBossDoorWall || swAboveBigChest || mmCutsceneRoom || gtRandoRoom;
     }
 })
 
@@ -1704,23 +1720,22 @@ bingoTiles.push({
         // TODO "2 Dungeon Blue Rupee Rooms"
         const podBasement = data[0xd5] & 0x01;
         const epRupeeRoom = 0x00;
-        const mmRupeeRoom1 = 0x00;
-        const mmRupeeRoom2 = 0x00;
+        const mmRupeeRoom1 = data[0x127] & 0x01;
+        const mmRupeeRoom2 = data[0x125] & 0x01;
         const hoolahanRoom = 0x00;
         return (podBasement || epRupeeRoom || mmRupeeRoom1 || mmRupeeRoom2 || hoolahanRoom);
     }
 })
 
 bingoTiles.push({
-    content: "Clear 2 Tile Rooms",
+    content: "Clear 5 Tile Rooms",
     tileId: null,
     isOpen: true,
     check: function(data) {
-        // TODO "Clear 2 Tile Rooms",
         const tohBasementTileroom = data[0x10e] & 0x04;
-        const dpTileroom1 = 0x00;
-        const dpTileroom2 = 0x00;
-        const mmTileroom = 0x00;
+        const dpTileroom1 = data[0xa6] & 0x08;
+        const dpTileroom2 = data[0x86] & 0x0C;
+        const mmTileroom = (data[0x182] & 0x0B) || (data[0x1a2] & 0x08);
         const gtTileroom = data[0x11a] & 0x10;
         return tohBasementTileroom && dpTileroom1 && dpTileroom2 && mmTileroom && gtTileroom;
     }
@@ -1733,7 +1748,7 @@ bingoTiles.push({
 // TODO "Complete 1 Line of Y-Items"
 // TODO "Win the Triforce"
 // ============== IMPOSSIBLE(?) TO AUTOMATE: ==============
-// TODO "Pull a Tongue Statue"
+// TODO "Pull a Tongue Statue" not persistent in room data
 // TODO "Defeat a Deadrock",
 // TODO "Defeat a Lynel",
 // TODO "Defeat all 6 Freezors",

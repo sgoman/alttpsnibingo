@@ -134,6 +134,7 @@ bingoTiles.push({
 //     isOpen: true,
 //     check: function(data) {
 //         // TODO "Die to Trinexx",
+//         // FIXME Address of Big Chest? It's none of these: [0x172, 0x10], [0x154, 0x10], [0x150, 0x10], [0x152, 0x10], [0x170, 0x10]
 //         return false
 //     }
 // })
@@ -373,6 +374,8 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+<<<<<<< HEAD
+=======
     content: "Open 5 Small Key Doors in Skull Woods",
     tileId: null,
     isOpen: true,
@@ -405,6 +408,7 @@ bingoTiles.push({
 })
 
 bingoTiles.push({
+>>>>>>> c25485031977a9f3938728d6a8386273678f7ce4
     content: "Thieves' Town Big Chest",
     tileId: null,
     isOpen: true,
@@ -788,6 +792,20 @@ bingoTiles.push({
         return hasAll(data, locations)
     }
 })
+// TODO "Open 5 Small Key Doors in PoD",
+//bingoTiles.push({
+    //content: "Open 5 Small Key Doors in PoD",
+    //tileId: null,
+    //isOpen: true,
+    //check: function(data) {
+        //console.log("current key counts PoD: " + data[0x382] + " SW: " + data[0x384] + " IP: " + data[0x385] + " MM: " + data[0x383] +
+            //" Mails & Small Keys: " + data[0x424] + " current dungeon: " + data[0x36F])
+        //return false
+    //}
+//})
+// TODO "Open 4 Small Key Doors (Skull Woods)",
+// TODO "Open 6 Small Key Doors (Ice Palace)",
+// TODO "Open 6 Small Key Doors (Misery Mire)",
 
 bingoTiles.push({
     content: "Open 6 Small Key Doors in Ice Palace",

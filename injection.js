@@ -595,6 +595,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME Warum funzt das nicht?
         return (0x2c3 & 0x20)
     }
 })
@@ -874,6 +875,7 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
+        // FIXME Warum funzt das nicht?
         return (0x2c7 & 0x20);
     }
 })

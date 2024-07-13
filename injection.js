@@ -1182,8 +1182,8 @@ bingoTiles.push({
     tileId: null,
     isOpen: true,
     check: function(data) {
-        const bosscount = ((data[0x191] & 0x08) >>> 3) + ((data[0x067] & 0x08) >>> 2) + ((data[0x0F] & 0x08) >>> 1)
-        return bosscount >== 2;
+        const bosscount = ((data[0x191] & 0x08) >>> 3) + ((data[0x067] & 0x08) >>> 3) + ((data[0x0F] & 0x08) >>> 3)
+        return bosscount >= 2;
     }
 })
 
@@ -1193,7 +1193,7 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         const bosscount = ((data[0x191] & 0x08) >>> 3) + ((data[0x067] & 0x08) >>> 3) + ((data[0x0F] & 0x08) >>> 3)
-        return bosscount >== 3;
+        return bosscount >= 3;
     }
 })
 
@@ -1207,7 +1207,7 @@ bingoTiles.push({
             ((data[0x0B5] & 0x08) >>> 3) + ((data[0x00D] & 0x08) >>> 3) + ((data[0x053] & 0x08) >>> 3) +
             ((data[0x159] & 0x08) >>> 3) + ((data[0x1BD] & 0x08) >>> 3) + ((data[0x121] & 0x08) >>> 3) +
             ((data[0x149] & 0x08) >>> 3)
-        return bosscount >== 2;
+        return bosscount >= 2;
     }
 })
 
@@ -1217,10 +1217,10 @@ bingoTiles.push({
     isOpen: true,
     check: function(data) {
         const bosscount =
-            ((data[0x0B5] & 0x08) >>> 3) + ((data[0x00D] & 0x08) >>> 2) + ((data[0x053] & 0x08) >>> 1) +
-            ((data[0x159] & 0x08) >>> 4) + ((data[0x1BD] & 0x08) >>> 5) + ((data[0x121] & 0x08) >>> 6) +
-            ((data[0x149] & 0x08) >>> 7)
-        return bosscount >== 3;
+            ((data[0x0B5] & 0x08) >>> 3) + ((data[0x00D] & 0x08) >>> 3) + ((data[0x053] & 0x08) >>> 3) +
+            ((data[0x159] & 0x08) >>> 3) + ((data[0x1BD] & 0x08) >>> 3) + ((data[0x121] & 0x08) >>> 3) +
+            ((data[0x149] & 0x08) >>> 3)
+        return bosscount >= 3;
     }
 })
 
